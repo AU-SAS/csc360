@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class DrawTriangle extends JPanel {
+public class Step_1_Draw_Triangle extends JPanel {
 
     @Override
     protected void paintComponent(Graphics g) {
@@ -25,7 +25,7 @@ public class DrawTriangle extends JPanel {
     public static void main(String[] args) {
         // Create a JFrame to hold the JPanel
         JFrame frame = new JFrame("Draw Triangle Example");
-        DrawTriangle panel = new DrawTriangle();
+        Step_1_Draw_Triangle panel = new Step_1_Draw_Triangle();
 
         frame.add(panel);
         frame.setSize(300, 300);

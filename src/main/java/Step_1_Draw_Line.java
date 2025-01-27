@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class DrawLineExample extends JPanel {
+public class Step_1_Draw_Line extends JPanel {
 
     @Override
     protected void paintComponent(Graphics g) {
@@ -20,7 +20,7 @@ public class DrawLineExample extends JPanel {
     public static void main(String[] args) {
         // Create a JFrame to hold the JPanel
         JFrame frame = new JFrame("Draw Line Example");
-        DrawLineExample panel = new DrawLineExample();
+        Step_1_Draw_Line panel = new Step_1_Draw_Line();
 
         frame.add(panel);
         frame.setSize(300, 200);
