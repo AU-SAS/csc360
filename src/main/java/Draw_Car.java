@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.GeneralPath;
 
-public class Step_2_Draw_Car extends JPanel {
+public class Draw_Car extends JPanel {
 
     @Override
     protected void paintComponent(Graphics g) {
@@ -45,7 +45,7 @@ public class Step_2_Draw_Car extends JPanel {
     public static void main(String[] args) {
         // Create a JFrame to hold the JPanel
         JFrame frame = new JFrame("2D Car Drawing");
-        Step_2_Draw_Car panel = new Step_2_Draw_Car();
+        Draw_Car panel = new Draw_Car();
 
         frame.add(panel);
         frame.setSize(300, 200);
