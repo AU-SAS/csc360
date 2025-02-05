@@ -74,7 +74,7 @@ public class ShapeOperationsDraw extends JPanel {
         JFrame frame = new JFrame("Set Operations: Circle and Rectangle");
         ShapeOperationsDraw panel = new ShapeOperationsDraw();
         frame.add(panel);
-        frame.setSize(500, 800);  // Increase height to accommodate all operations
+        frame.setSize(500, 900);  // Increase height to accommodate all operations
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null); // Center the frame
         frame.setVisible(true);

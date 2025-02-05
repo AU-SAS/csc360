@@ -1,10 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class DrawPolygons extends JPanel {
-
+public class Step_5_Draw_Polygons extends JPanel
+{
     @Override
-    protected void paintComponent(Graphics g) {
+    protected void paintComponent(Graphics g)
+    {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
 
@@ -32,12 +33,11 @@ public class DrawPolygons extends JPanel {
         g2d.drawPolygon(xConvex, yConvex, xConvex.length);
         g2d.drawString("Convex", 50, 140);
     }
-
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         // Create a JFrame to hold the JPanel
         JFrame frame = new JFrame("Draw Polygons");
-        DrawPolygons panel = new DrawPolygons();
-
+        Step_5_Draw_Polygons panel = new Step_5_Draw_Polygons();
         frame.add(panel);
         frame.setSize(400, 300);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -2,10 +2,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.GeneralPath;
 
-public class Draw_Car extends JPanel {
-
+public class Activity_4_Draw_a_car extends JPanel
+{
     @Override
-    protected void paintComponent(Graphics g) {
+    protected void paintComponent(Graphics g)
+    {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
 
@@ -42,10 +43,11 @@ public class Draw_Car extends JPanel {
         g2d.fillOval(165, 120, 20, 20); // Rear wheel
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         // Create a JFrame to hold the JPanel
         JFrame frame = new JFrame("2D Car Drawing");
-        Draw_Car panel = new Draw_Car();
+        Activity_4_Draw_a_car panel = new Activity_4_Draw_a_car();
 
         frame.add(panel);
         frame.setSize(300, 200);

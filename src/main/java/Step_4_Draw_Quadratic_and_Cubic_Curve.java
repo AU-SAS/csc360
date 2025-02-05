@@ -1,8 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class DrawCurves1 extends JPanel {
-
+public class Step_4_Draw_Quadratic_and_Cubic_Curve extends JPanel
+{
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -42,11 +42,11 @@ public class DrawCurves1 extends JPanel {
         g2d.drawLine(150, 150, 200, 150); // Second control point to the end point
         g2d.drawLine(50, 50, 150, 150); // Cubic curve (a smooth transition)
     }
-
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         // Create a JFrame to hold the JPanel
         JFrame frame = new JFrame("Draw Quadratic and Cubic Curves");
-        DrawCurves1 panel = new DrawCurves1();
+        Step_4_Draw_Quadratic_and_Cubic_Curve panel = new Step_4_Draw_Quadratic_and_Cubic_Curve();
 
         frame.add(panel);
         frame.setSize(400, 400);
