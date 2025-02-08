@@ -4,10 +4,11 @@ import java.awt.geom.Area;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 
-public class ShapeOperationsDraw extends JPanel {
-
+public class Step_6_Draw_Maths_Set_Operations extends JPanel
+{
     @Override
-    protected void paintComponent(Graphics g) {
+    protected void paintComponent(Graphics g)
+    {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
 
@@ -70,9 +71,10 @@ public class ShapeOperationsDraw extends JPanel {
         g2d.drawString("Symmetric Difference", 50, 250);  // Label for the operation
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         JFrame frame = new JFrame("Set Operations: Circle and Rectangle");
-        ShapeOperationsDraw panel = new ShapeOperationsDraw();
+        Step_6_Draw_Maths_Set_Operations panel = new Step_6_Draw_Maths_Set_Operations();
         frame.add(panel);
         frame.setSize(500, 900);  // Increase height to accommodate all operations
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
