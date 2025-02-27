@@ -23,7 +23,7 @@ public class Homework_Activity_1 extends JFrame
         // Right Panel for Color Buttons
         JPanel colorPanel = new JPanel();
         colorPanel.setLayout(new GridLayout(7, 1));
-        String[] colors = {"V", "I", "B", "G", "Y", "O", "R"};
+        String [] colors = {"V", "I", "B", "G", "Y", "O", "R"};
         Color[] colorValues = {new Color(138, 43, 226), // Violet
                 new Color(75, 0, 130),   // Indigo
                 Color.BLUE,             // Blue

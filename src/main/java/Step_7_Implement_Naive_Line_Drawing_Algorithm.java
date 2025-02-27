@@ -4,12 +4,12 @@ import java.awt.*;
 public class Step_7_Implement_Naive_Line_Drawing_Algorithm extends JPanel
 {
     private final int x1, y1, x2, y2;
-    public Step_7_Implement_Naive_Line_Drawing_Algorithm(int x1, int y1, int x2, int y2)
+    public Step_7_Implement_Naive_Line_Drawing_Algorithm(int num1, int num2, int num3, int num4)
     {
-        this.x1 = x1;
-        this.y1 = y1;
-        this.x2 = x2;
-        this.y2 = y2;
+        this.x1 = num1;
+        this.y1 = num2;
+        this.x2 = num3;
+        this.y2 = num4;
         setPreferredSize(new Dimension(800, 800));
         setBackground(Color.WHITE);
     }
