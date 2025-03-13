@@ -127,6 +127,6 @@ public class size_dynamic extends JFrame {
     }
 
     public static void main(String[] args) {
-        new size_dynamic();
+         new size_dynamic();
     }
 }
