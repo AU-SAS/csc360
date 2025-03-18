@@ -21,6 +21,16 @@ public class project_cluster extends JFrame {
             start_y += 30;
         }
 
+        int distance_x = 100; // distance of the lines for the tree
+
+        g2d.setColor(Color.BLACK);
+        int[] xPoints = {20, 60, 60, 20}; // X coordinates
+        int[] yPoints = {20, 20, (30*3), (30*3)}; // Y coordinates
+        g2d.drawPolygon(xPoints, yPoints, 4); // first box (to show a cluster or group)
+
+
+
+
 
     }
 
