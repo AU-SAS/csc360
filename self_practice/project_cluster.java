@@ -4,29 +4,37 @@ import javax.swing.*;
 import java.awt.*;
 
 public class project_cluster extends JFrame {
-
-    //number of clusters we need
-
-    public project_cluster() {
-        //setting up the panel
-        setTitle("Project Cluster");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(500, 500);
-
-    }
     @Override
-    public void paintComponent(Graphics g) {
+    protected void paintComponent(Graphics g) {
         super.paintComponents(g);
         Graphics2D g2d = (Graphics2D) g;
         g2d.setColor(Color.BLACK);
 
+        //setting starting coordinates
+        int start_x = 20;
+        int start_y = 20;
+
+        for (int i = 0 ; i < 10 ; i++) {
+
+
+
+        }
+
 
     }
 
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
+        //setting up the panel
+        project_cluster panel = new project_cluster();
+        JFrame frame = new JFrame("Cluster Tree");
+        frame.add(panel);
+        frame.setSize(500, 500);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
 
-        new project_cluster();
+
+
     }
 }
