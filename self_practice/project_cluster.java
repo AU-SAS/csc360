@@ -3,7 +3,7 @@ package self_practice;
 import javax.swing.*;
 import java.awt.*;
 
-public class project_cluster extends JFrame {
+public class project_cluster extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponents(g);
