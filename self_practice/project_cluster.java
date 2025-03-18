@@ -13,11 +13,12 @@ public class project_cluster extends JFrame {
         //setting starting coordinates
         int start_x = 20;
         int start_y = 20;
+        int diameter = 10;
 
         for (int i = 0 ; i < 10 ; i++) {
-
-
-
+            g2d.setColor(Color.RED);
+            g2d.fillOval(start_x, start_y, diameter, diameter);
+            start_y += 30;
         }
 
 
