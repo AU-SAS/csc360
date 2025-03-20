@@ -2,21 +2,25 @@ package self_practice;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.*;
 
-public class project_cluster extends JPanel {
+public class project_cluster extends JPanel  {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponents(g);
         Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.BLACK);
+//        g2d.setColor(Color.BLACK);
 
         //setting starting coordinates
-        int start_x = 20;
+        int start_x = 40;
         int start_y = 20;
         int diameter = 10;
+        Random r_color = new Random();
+
 
         for (int i = 0 ; i < 10 ; i++) {
-            g2d.setColor(Color.RED);
+            Color random_colors = new Color(r_color.nextInt(255), r_color.nextInt(255), r_color.nextInt(255));
+            g2d.setColor(random_colors);
             g2d.fillOval(start_x, start_y, diameter, diameter);
             start_y += 30;
         }
