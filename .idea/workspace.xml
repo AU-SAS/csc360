@@ -4,8 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="878c3c88-6bb7-4fc8-9046-9e58e53cdf12" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Activity4_drawcar.java" afterDir="false" />
+    <list default="true" id="878c3c88-6bb7-4fc8-9046-9e58e53cdf12" name="Changes" comment="project demo- dots and cluster">
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mandala.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project_demo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/projectdemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/projectdemo.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,40 +28,71 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="REMOTE">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="origin/mahek" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
+    <option name="PUSH_AUTO_UPDATE" value="true" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/AU-SAS/csc360.git",
-    "accountId": "000496d4-bb30-498a-acba-89505f6ed5bb"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;mahek-25&quot;
   }
-}]]></component>
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/AU-SAS/csc360.git&quot;,
+    &quot;accountId&quot;: &quot;000496d4-bb30-498a-acba-89505f6ed5bb&quot;
+  }
+}</component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\xampp\php\php.exe" />
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2uRUAtws5Ydnn2pd20YKyOd3WwT" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Activity4.executor": "Run",
-    "Application.activity4.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "mahek",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Activity4.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Activity4_drawcar.executor&quot;: &quot;Run&quot;,
+    &quot;Application.activity4.executor&quot;: &quot;Run&quot;,
+    &quot;Application.mandala.executor&quot;: &quot;Run&quot;,
+    &quot;Application.projectdemo.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;mahek&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Lenovo/IdeaProjects/csc360/Self Code&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Lenovo\IdeaProjects\csc360\Self Code" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="activity4" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="activity4" />
@@ -82,11 +118,80 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1742210748578</updated>
-      <workItem from="1742210750878" duration="1081000" />
+      <workItem from="1742210750878" duration="2152000" />
+      <workItem from="1742276196721" duration="3279000" />
+      <workItem from="1742372665810" duration="767000" />
+      <workItem from="1742448941638" duration="4806000" />
     </task>
+    <task id="LOCAL-00001" summary="Activity 4 Draw a car">
+      <option name="closed" value="true" />
+      <created>1742212299862</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1742212299862</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Activity 4 Draw a car">
+      <option name="closed" value="true" />
+      <created>1742212576381</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1742212576381</updated>
+    </task>
+    <task id="LOCAL-00003" summary="project demo">
+      <option name="closed" value="true" />
+      <created>1742278536594</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1742278536594</updated>
+    </task>
+    <task id="LOCAL-00004" summary="project demo">
+      <option name="closed" value="true" />
+      <created>1742278863569</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1742278863569</updated>
+    </task>
+    <task id="LOCAL-00005" summary="project demo">
+      <option name="closed" value="true" />
+      <created>1742280356820</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1742280356820</updated>
+    </task>
+    <task id="LOCAL-00006" summary="project demo- dots and cluster">
+      <option name="closed" value="true" />
+      <created>1742451378996</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1742451378996</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Activity 4 Draw a car" />
+    <MESSAGE value="project demo" />
+    <MESSAGE value="project demo- dots and cluster" />
+    <option name="LAST_COMMIT_MESSAGE" value="project demo- dots and cluster" />
   </component>
 </project>
