@@ -12,10 +12,8 @@ import java.awt.*;
  */
 public class Draw_Cluster extends JPanel {
 
-    private final int[] yG1;
+
     private final int offset;
-    private final int[] yG2;
-    private final int[] yG3;
     private final Color[] colors;
     private final String[] labels;
 
@@ -33,9 +31,7 @@ public class Draw_Cluster extends JPanel {
         colors = new Color[]{Color.RED, Color.BLUE, Color.GREEN};
         labels = new String[]{"G1", "G2", "G3"};
 
-        yG1 = new int[]{50, 80, 110};
-        yG2 = new int[]{140, 170, 200};
-        yG3 = new int[]{230, 260, 290};
+
     }
 
     @Override
