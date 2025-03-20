@@ -25,7 +25,7 @@ public class projectdemo extends JPanel
             g2d.setColor(color);
             g2d.fillOval(startX, startY , dotsize, dotsize);
             startY += 30;
-        }
+    }
         g2d.setColor(Color.pink);
         int[] Xpoint0 = {20,50,50,20};
         int[] Ypoint0 = {20,20,92,92};
