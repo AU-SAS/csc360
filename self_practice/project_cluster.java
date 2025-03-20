@@ -29,6 +29,11 @@ public class project_cluster extends JPanel {
         g2d.drawPolygon(xPoints, yPoints, 4); // first box (to show a cluster or group)
 
 
+        g2d.setColor(Color.BLACK);
+        int[] xPoints1 = {20, 60, 60, 20}; // X coordinates
+        int[] yPoints1 = {20, 20, (30*8), (30*8)}; // Y coordinates
+        g2d.drawPolygon(xPoints1, yPoints1, 4); // first box (to show a cluster or group)
+
 
 
 
