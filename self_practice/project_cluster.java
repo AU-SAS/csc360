@@ -48,6 +48,19 @@ public class project_cluster extends JPanel  {
         g2d.drawLine(60, (30*6), 120,(30*6)); // second link -- cluster 2
         g2d.drawLine(60, 280, 120,280); //third link -- cluster 3
 
+        //setting starting coordinates for 2nd cluster
+        int start_x1 = 135;
+        int start_y1 = 50;
+        int diameter1 = 20;
+        g2d.setColor(Color.BLACK);
+
+        for (int i = 0 ; i < 3 ; i++) {
+            Color random_colors = new Color(r_color.nextInt(255), r_color.nextInt(255), r_color.nextInt(255));
+            g2d.setColor(random_colors);
+            g2d.fillOval(start_x1, start_y1, diameter1, diameter1);
+            start_y1 += 115;
+        }
+
 
 
 
