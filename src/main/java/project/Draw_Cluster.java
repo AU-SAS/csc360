@@ -13,12 +13,26 @@ import java.awt.*;
 public class Draw_Cluster extends JPanel {
 
     private final int[] yG1;
-    private final int x;
+    private final int offset;
     private final int[] yG2;
     private final int[] yG3;
+    private final Color[] colors;
+    private final String[] labels;
+
+
+    private int k = 3;
+    private int[][] data;
 
     public Draw_Cluster() {
-        x = 200;
+        offset = 50;
+        data = new int[][]{
+                {50, 80, 110},
+                {140, 170, 200},
+                {230, 260, 290}
+        };
+        colors = new Color[]{Color.RED, Color.BLUE, Color.GREEN};
+        labels = new String[]{"G1", "G2", "G3"};
+
         yG1 = new int[]{50, 80, 110};
         yG2 = new int[]{140, 170, 200};
         yG3 = new int[]{230, 260, 290};
@@ -29,25 +43,16 @@ public class Draw_Cluster extends JPanel {
 
         super.paintComponent(g);
 
-        g.setColor(Color.RED);
-        drawPoints(g, x, yG1);
-
-        g.setColor(Color.BLUE);
-        drawPoints(g, x, yG2);
-
-        g.setColor(Color.GREEN);
-        drawPoints(g, x, yG3);
-    }
-
-    private void drawPoints(Graphics g, int x, int[] yValues) {
-        for (int y : yValues) {
-            g.fillOval(x, y, 10,
-                    10);
+        for (int i = 0; i < k; i++) {
+            g.setColor(colors[i]);
+            for (int y : data[i]) {
+                g.fillOval(offset, y, 10, 10);
+            }
         }
+
     }
 
     public static void main(String[] args) {
-
         Util_Cluster.showFrame(new Draw_Cluster());
     }
 
