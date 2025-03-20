@@ -16,6 +16,7 @@ public class project_cluster extends JPanel  {
         int start_y = 20;
         int diameter = 10;
         Random r_color = new Random();
+        g2d.setStroke( new BasicStroke(2));
 
 
         for (int i = 0 ; i < 10 ; i++) {
@@ -25,7 +26,6 @@ public class project_cluster extends JPanel  {
             start_y += 30;
         }
 
-        int distance_x = 100; // distance of the lines for the tree
 
         g2d.setColor(Color.BLACK);
         int[] xPoints = {20, 60, 60, 20}; // X coordinates
@@ -43,16 +43,18 @@ public class project_cluster extends JPanel  {
         int[] yPoints2 = {250,250,  310, 310}; // Y coordinates
         g2d.drawPolygon(xPoints2, yPoints2, 4); // third box (to show a cluster or group)
 
+
         g2d.setColor(Color.BLUE); //setting color to blue for the links
         g2d.drawLine(60, (30*2), 120,(30*2)); // first link -- cluster 1
         g2d.drawLine(60, (30*6), 120,(30*6)); // second link -- cluster 2
         g2d.drawLine(60, 280, 120,280); //third link -- cluster 3
 
+
         //setting starting coordinates for 2nd cluster
         int start_x1 = 135;
         int start_y1 = 50;
         int diameter1 = 20;
-        g2d.setColor(Color.BLACK);
+//        g2d.setColor(Color.BLACK);
 
         for (int i = 0 ; i < 3 ; i++) {
             Color random_colors = new Color(r_color.nextInt(255), r_color.nextInt(255), r_color.nextInt(255));
@@ -60,6 +62,38 @@ public class project_cluster extends JPanel  {
             g2d.fillOval(start_x1, start_y1, diameter1, diameter1);
             start_y1 += 115;
         }
+
+        int [] x_points_2 = {120, 170, 170, 120};
+        int[] yPoints_2 = {20 , 20 , 220, 220};
+        g2d.setColor(Color.BLACK);
+        g2d.drawPolygon(x_points_2, yPoints_2, 4);
+
+        int[] yPoints_3 = {250, 250, 320, 320};
+        g2d.drawPolygon(x_points_2, yPoints_3, 4);
+
+        int y2 = 115; // y coordinate
+
+        for (int i = 0 ; i < 2 ; i++) {
+            Color random_colors = new Color(r_color.nextInt(255), r_color.nextInt(255), r_color.nextInt(255));
+            g2d.setColor(random_colors);
+            g2d.fillOval(250, y2, 30,30);
+            y2 += 150;
+        }
+
+        g2d.setColor(Color.BLUE);
+        g2d.drawLine(170, 120, 220,120);
+        g2d.drawLine(170, 280, 220,280);
+
+        g2d.setColor(Color.BLACK);
+        int [] xPoints_3 = {220, 300, 300, 220};
+        int [] ypoints_3 = {100, 100, 300, 300};
+        g2d.drawPolygon(xPoints_3, ypoints_3, 4);
+
+
+
+
+
+
 
 
 
