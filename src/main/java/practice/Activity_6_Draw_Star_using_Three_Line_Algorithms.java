@@ -1,3 +1,5 @@
+package practice;
+
 import javax.swing.*;
 import java.awt.*;
 public class Activity_6_Draw_Star_using_Three_Line_Algorithms extends JPanel

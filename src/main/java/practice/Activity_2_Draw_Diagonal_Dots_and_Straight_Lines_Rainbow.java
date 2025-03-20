@@ -1,3 +1,5 @@
+package practice;
+
 import javax.swing.*;
 import java.awt.*;
 public class Activity_2_Draw_Diagonal_Dots_and_Straight_Lines_Rainbow extends JPanel

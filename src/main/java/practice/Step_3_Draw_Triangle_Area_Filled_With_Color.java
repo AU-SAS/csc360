@@ -1,3 +1,5 @@
+package practice;
+
 import javax.swing.*;
 import java.awt.*;
 public class Step_3_Draw_Triangle_Area_Filled_With_Color extends JPanel

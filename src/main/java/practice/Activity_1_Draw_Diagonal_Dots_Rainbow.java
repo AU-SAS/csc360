@@ -1,3 +1,5 @@
+package practice;
+
 import javax.swing.*;
 import java.awt.*;
 
