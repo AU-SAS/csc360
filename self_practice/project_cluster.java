@@ -25,24 +25,24 @@ public class project_cluster extends JPanel {
 
         g2d.setColor(Color.BLACK);
         int[] xPoints = {20, 60, 60, 20}; // X coordinates
-        int[] yPoints = {20, 20, (30*3), (30*3)}; // Y coordinates
+        int[] yPoints = {10, 10, 92, 92}; // Y coordinates
         g2d.drawPolygon(xPoints, yPoints, 4); // first box (to show a cluster or group)
-
 
         g2d.setColor(Color.BLACK);
         int[] xPoints1 = {20, 60, 60, 20}; // X coordinates
-        int[] yPoints1 = {20, 20, (30*8), (30*8)}; // Y coordinates
+        int[] yPoints1 = {95, 95 , 245, 245}; // Y coordinates
         g2d.drawPolygon(xPoints1, yPoints1, 4); // second box (to show a cluster or group)
+
 
         g2d.setColor(Color.BLACK);
         int[] xPoints2 = {20, 60, 60, 20}; // X coordinates
-        int[] yPoints2 = {20, 20, (30*10), (30*10)}; // Y coordinates
+        int[] yPoints2 = {250,250,  310, 310}; // Y coordinates
         g2d.drawPolygon(xPoints2, yPoints2, 4); // third box (to show a cluster or group)
 
         g2d.setColor(Color.BLUE); //setting color to blue for the links
         g2d.drawLine(60, (30*2), 120,(30*2)); // first link -- cluster 1
         g2d.drawLine(60, (30*6), 120,(30*6)); // second link -- cluster 2
-        g2d.drawLine(60, (30*9), 120,(30*9)); //third link -- cluster 3
+        g2d.drawLine(60, 280, 120,280); //third link -- cluster 3
 
 
 
