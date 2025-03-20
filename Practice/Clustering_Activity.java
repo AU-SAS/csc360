@@ -9,7 +9,7 @@ public class Clustering_Activity extends JPanel {
 
         g2d.setColor(Color.RED);
 
-        int x = 150; // same x coordinate
+        int x = 50; // same x coordinate
         int[] y = {50, 100, 150, 200, 250, 300}; // y coordinate
 
 
@@ -20,22 +20,22 @@ public class Clustering_Activity extends JPanel {
         g2d.setColor(Color.BLUE);
 
         // First cluster
-        g2d.drawLine(x, y[0], x - 40, y[0]);  // 1stline
-        g2d.drawLine(x - 40, y[0], x - 40, y[1]);  // 2ndline
-        g2d.drawLine(x - 40, y[1], x, y[1]);  // 3rdline
-        g2d.drawLine(x - 50, (y[0] + y[1]) / 2, x - 40, (y[0] + y[1]) / 2);  // Middle line on the left side
+        g2d.drawLine(x, y[0], x + 40, y[0]);  // 1stline
+        g2d.drawLine(x + 40, y[0], x + 40, y[1]);  // 2ndline
+        g2d.drawLine(x + 40, y[1], x, y[1]);  // 3rdline
+        g2d.drawLine(x + 50, (y[0] + y[1]) / 2, x + 40, (y[0] + y[1]) / 2);  // Middle line on the right side
 
         // Second cluster
-        g2d.drawLine(x, y[2], x - 40, y[2]);
-        g2d.drawLine(x - 40, y[2], x - 40, y[3]);
-        g2d.drawLine(x - 40, y[3], x, y[3]);
-        g2d.drawLine(x - 50, (y[2] + y[3]) / 2, x - 40, (y[2] + y[3]) / 2);
+        g2d.drawLine(x, y[2], x + 40, y[2]);
+        g2d.drawLine(x + 40, y[2], x + 40, y[3]);
+        g2d.drawLine(x + 40, y[3], x, y[3]);
+        g2d.drawLine(x + 50, (y[2] + y[3]) / 2, x + 40, (y[2] + y[3]) / 2);
 
         // Third cluster
-        g2d.drawLine(x, y[4], x - 40, y[4]);
-        g2d.drawLine(x - 40, y[4], x - 40, y[5]);
-        g2d.drawLine(x - 40, y[5], x, y[5]);
-        g2d.drawLine(x - 50, (y[4] + y[5]) / 2, x - 40, (y[4] + y[5]) / 2);
+        g2d.drawLine(x, y[4], x + 40, y[4]);
+        g2d.drawLine(x + 40, y[4], x + 40, y[5]);
+        g2d.drawLine(x + 40, y[5], x, y[5]);
+        g2d.drawLine(x + 50, (y[4] + y[5]) / 2, x + 40, (y[4] + y[5]) / 2);
     }
 
     public static void main(String[] args) {
