@@ -39,6 +39,11 @@ public class project_cluster extends JPanel {
         int[] yPoints2 = {20, 20, (30*10), (30*10)}; // Y coordinates
         g2d.drawPolygon(xPoints2, yPoints2, 4); // third box (to show a cluster or group)
 
+        g2d.setColor(Color.BLUE); //setting color to blue for the links
+        g2d.drawLine(60, (30*2), 120,(30*2)); // first link -- cluster 1
+        g2d.drawLine(60, (30*6), 120,(30*6)); // second link -- cluster 2
+        g2d.drawLine(60, (30*9), 120,(30*9)); //third link -- cluster 3
+
 
 
 
