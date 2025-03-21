@@ -7,23 +7,22 @@ public class Clustering_Activity2 extends JPanel {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
 
-        g2d.setColor(Color.RED);
+        g2d.setColor(Color.BLUE);
 
-        //cluster 1
+        // Cluster 1
         int x1 = 150, y1 = 80;
         int x2 = 140, y2 = 100;
         int x3 = 160, y3 = 100;
 
-        //cluster2
+        // Cluster 2
         int x4 = 150, y4 = 180;
         int x5 = 140, y5 = 200;
         int x6 = 160, y6 = 200;
 
-        //cluster 3
+        // Cluster 3
         int x7 = 150, y7 = 280;
         int x8 = 140, y8 = 300;
         int x9 = 160, y9 = 300;
-
 
         g2d.fillOval(x1 - 5, y1 - 5, 10, 10);
         g2d.fillOval(x2 - 5, y2 - 5, 10, 10);
@@ -37,9 +36,9 @@ public class Clustering_Activity2 extends JPanel {
         g2d.fillOval(x8 - 5, y8 - 5, 10, 10);
         g2d.fillOval(x9 - 5, y9 - 5, 10, 10);
 
-        g2d.setColor(Color.BLUE);
+        g2d.setColor(Color.DARK_GRAY); // Changed to DARK GRAY for a subtle but clear outline
 
-        // circle around cluster
+        // Circles around clusters
         g2d.drawOval(125, 65, 50, 50); // First cluster circle
         g2d.drawOval(125, 165, 50, 50); // Second cluster circle
         g2d.drawOval(125, 265, 50, 50); // Third cluster circle
