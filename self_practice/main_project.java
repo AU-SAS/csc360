@@ -118,11 +118,20 @@ public class main_project extends JPanel {
         //fourth layer
         int link_x4 = link_x3 + 80;
         int diameter4 = 40;
+        Color random_colors = new Color(r_color.nextInt(255), r_color.nextInt(255), r_color.nextInt(255));
+        g2d.setColor(random_colors);
+        g2d.fillOval(link_x4, link_y_values3[0] - 20, diameter4, diameter4);
 
-        for (int i = 0; i < cluster_box3.length; i++) {
-            Color random_colors = new Color(r_color.nextInt(255), r_color.nextInt(255), r_color.nextInt(255));
-            g2d.setColor(random_colors);
-            g2d.fillOval(link_x4, link_y_values3[i] - 15, diameter4, diameter4); // last dot
+        //fourth box
+        int[][] cluster_box4 = {
+                {link_y_values3[0] - 30, link_y_values3[0] + 30} // box around the one circle
+        };
+
+        g2d.setColor(Color.BLACK);
+        for (int i = 0; i < cluster_box4.length; i++) {
+            int[] x_points = {link_x4 - 10, link_x4 + 50, link_x4 + 50, link_x4 - 10};
+            int[] y_points = {cluster_box4[i][0], cluster_box4[i][0], cluster_box4[i][1], cluster_box4[i][1]};
+            g2d.drawPolygon(x_points, y_points, 4);
         }
 
 
