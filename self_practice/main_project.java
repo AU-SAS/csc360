@@ -40,6 +40,8 @@ public class main_project extends JPanel {
                 {315, 370} //fourth box -- last cluster
         };
 
+        int[] link_y_values = new int[cluster_box.length]; //to store y values
+
         g2d.setColor(Color.BLACK);
         //drawing the boxes using loop
         for (int i = 0; i < cluster_box.length; i++) {
@@ -50,6 +52,7 @@ public class main_project extends JPanel {
             //adding links between the clusters
             int link_y = cluster_box[i][0] + ((cluster_box[i][1] - cluster_box[i][0]) / 2); // middle of box
             g2d.drawLine(60, link_y, 90, link_y); // links
+            link_y_values[i] = link_y; //storing values
         }
 
         //second layer of dots
@@ -62,6 +65,25 @@ public class main_project extends JPanel {
             int link_y = cluster_box[i][0] + ((cluster_box[i][1] - cluster_box[i][0]) / 2);
             g2d.fillOval(link_x, link_y-10, diameter2, diameter2); // making dots for the second line of clusters
         }
+
+        //making boxes around each cluster
+
+        int [][] cluster_box2 = {
+                {link_y_values[0] -15, link_y_values[1] + 15}, //first box
+                {link_y_values[2] -15, link_y_values[2] + 15}, //second box
+                {link_y_values[3] -15, link_y_values[3] + 15}, //third box
+
+        };
+
+        g2d.setColor(Color.BLACK);
+        for (int i = 0; i < cluster_box2.length; i++) {
+            int[] x_points = {link_x -10, link_x + 30, link_x +30 , link_x -10};
+            int[] y_points = {cluster_box2[i][0],cluster_box2[i][0], cluster_box2[i][1], cluster_box2[i][1]};
+            g2d.drawPolygon(x_points, y_points, 4);
+        }
+
+
+
 
 
     }
