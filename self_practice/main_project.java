@@ -78,6 +78,11 @@ public class main_project extends JPanel {
             int[] x_points = {link_x - 10, link_x + 30, link_x + 30, link_x - 10};
             int[] y_points = {cluster_box2[i][0], cluster_box2[i][0], cluster_box2[i][1], cluster_box2[i][1]};
             g2d.drawPolygon(x_points, y_points, 4);
+
+            //adding links between the clusters
+            int link_y = cluster_box2[i][0] + ((cluster_box2[i][1] - cluster_box2[i][0]) / 2); // middle of box
+            g2d.drawLine(link_x + 30, link_y, link_x + 60, link_y); // links
+            link_y_values[i] = link_y;
         }
 
 
