@@ -52,6 +52,17 @@ public class main_project extends JPanel {
             g2d.drawLine(60, link_y, 90, link_y); // links
         }
 
+        //second layer of dots
+
+        int link_x = 100;
+        int diameter2 = 20;
+        for (int i = 0; i < cluster_box.length; i++) {
+            Color random_colors = new Color(r_color.nextInt(255), r_color.nextInt(255), r_color.nextInt(255));
+            g2d.setColor(random_colors);
+            int link_y = cluster_box[i][0] + ((cluster_box[i][1] - cluster_box[i][0]) / 2);
+            g2d.fillOval(link_x, link_y-10, diameter2, diameter2); // making dots for the second line of clusters
+        }
+
 
     }
 
