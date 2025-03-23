@@ -1,3 +1,5 @@
+package practice;
+
 import javax.swing.*;
 import java.awt.*;
 public class Step_2_Draw_Straight_Line extends JPanel
