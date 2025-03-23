@@ -21,13 +21,18 @@ public class main_project extends JPanel {
         int start_x = 40;
         int start_y = 20;
         int diameter = 10;
-        int total_circles = 12;
+        int circles_per_cluster = 4;
 
-        for (int i = 0; i < total_circles; i++) {
-            Color random_colors = new Color(r_color.nextInt(255), r_color.nextInt(255), r_color.nextInt(255));
-            g2d.setColor(random_colors);
-            g2d.fillOval(start_x, start_y + (i*y_offset), diameter, diameter);
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < circles_per_cluster; j++) {
+                Color random_colors = new Color(r_color.nextInt(255), r_color.nextInt(255), r_color.nextInt(255));
+                g2d.setColor(random_colors);
+                int y1 = start_y + (i*120) + (j*y_offset);
+                g2d.fillOval(start_x, y1, diameter, diameter);
+            }
         }
+
+
     }
 
 
