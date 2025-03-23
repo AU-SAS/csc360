@@ -40,6 +40,14 @@ public class main_project extends JPanel {
                 {315, 370} //fourth box -- last cluster
         };
 
+        g2d.setColor(Color.BLACK);
+        //drawing the boxes using loop
+        for (int i = 0; i < cluster_box.length; i++) {
+            int[] x_points = {20, 60, 60, 20};
+            int[] y_points = {cluster_box[i][0], cluster_box[i][0], cluster_box[i][1], cluster_box[i][1]};
+            g2d.drawPolygon(x_points, y_points, 4);
+        }
+
 
     }
 
