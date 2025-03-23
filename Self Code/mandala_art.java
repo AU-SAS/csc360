@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 
 
-public class mandala extends JPanel
+public class mandala_art extends JPanel
 {
     @Override
     protected void paintComponent(Graphics g)
@@ -46,7 +46,7 @@ public class mandala extends JPanel
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("Mandala Art");
-        mandala panel = new mandala();
+        mandala_art panel = new mandala_art();
 
         frame.add(panel);
         frame.setSize(400, 400);
