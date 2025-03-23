@@ -68,17 +68,15 @@ public class main_project extends JPanel {
 
         //making boxes around each cluster
 
-        int [][] cluster_box2 = {
-                {link_y_values[0] -15, link_y_values[1] + 15}, //first box
-                {link_y_values[2] -15, link_y_values[2] + 15}, //second box
-                {link_y_values[3] -15, link_y_values[3] + 15}, //third box
-
+        int[][] cluster_box2 = {
+                {link_y_values[0] - 15, link_y_values[1] + 15}, // first box -- 2 dots
+                {link_y_values[2] - 15, link_y_values[3] + 15}  // decond box -- 2 dots
         };
 
         g2d.setColor(Color.BLACK);
         for (int i = 0; i < cluster_box2.length; i++) {
-            int[] x_points = {link_x -10, link_x + 30, link_x +30 , link_x -10};
-            int[] y_points = {cluster_box2[i][0],cluster_box2[i][0], cluster_box2[i][1], cluster_box2[i][1]};
+            int[] x_points = {link_x - 10, link_x + 30, link_x + 30, link_x - 10};
+            int[] y_points = {cluster_box2[i][0], cluster_box2[i][0], cluster_box2[i][1], cluster_box2[i][1]};
             g2d.drawPolygon(x_points, y_points, 4);
         }
 
