@@ -32,6 +32,14 @@ public class main_project extends JPanel {
             }
         }
 
+        // making boxes around each cluster using loops
+        int [][] cluster_box = {
+                {10,90}, // first box around 1st cluster
+                {95, 245}, // second box -- middle 2nd cluster
+                {250, 310}, //third box -- last 3rd cluster
+                {315, 370} //fourth box -- last cluster
+        };
+
 
     }
 
