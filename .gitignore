@@ -1,3 +1,9 @@
 /target
 **/*.iml
 **/out/**
+src/main/java/ClusterVisualiser.java
+src/main/java/ClusterVisualization.java
+src/main/java/ClusterVisualizer.java
+src/main/java/Clustering_Activity.java
+src/main/java/HierarchicalClustering.java
+src/main/java/SimpleDendogram.java

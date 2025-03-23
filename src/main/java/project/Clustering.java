@@ -1,3 +1,5 @@
+package project;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.*;
@@ -15,6 +17,22 @@ public class Clustering extends JPanel {
         setPreferredSize(new Dimension(600, 400));
         setBackground(Color.WHITE);
         initializeData();
+    }
+
+    private double calculateDistance(Cluster c1, Cluster c2) {
+        // Use single linkage (minimum distance between any two points)
+        double minDist = Double.MAX_VALUE;
+
+        for (DataPoint p1 : c1.points) {
+            for (DataPoint p2 : c2.points) {
+                double dist = Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2));
+                if (dist < minDist) {
+                    minDist = dist;
+                }
+            }
+        }
+
+        return minDist;
     }
 
     private void initializeData() {
@@ -52,7 +70,7 @@ public class Clustering extends JPanel {
         for (DataPoint point : dataPoints) {
             g2d.setColor(point.color);
             g2d.fillOval(MARGIN_LEFT - DOT_SIZE/2, point.screenY - DOT_SIZE/2, DOT_SIZE, DOT_SIZE);
-            g2d.drawString(point.name,
+            g2d.drawString(point.name + " (" + point.x + ", " + point.y + ")",
                     MARGIN_LEFT + 10, point.screenY + 5);
         }
 
