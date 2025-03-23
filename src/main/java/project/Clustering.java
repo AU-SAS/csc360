@@ -12,27 +12,13 @@ public class Clustering extends JPanel {
     private static final int POINT_SPACING = 30;
 
     private List<DataPoint> dataPoints;
+    private List<Cluster> clusters;
 
     public Clustering() {
         setPreferredSize(new Dimension(600, 400));
         setBackground(Color.WHITE);
         initializeData();
-    }
-
-    private double calculateDistance(Cluster c1, Cluster c2) {
-        // Use single linkage (minimum distance between any two points)
-        double minDist = Double.MAX_VALUE;
-
-        for (DataPoint p1 : c1.points) {
-            for (DataPoint p2 : c2.points) {
-                double dist = Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2));
-                if (dist < minDist) {
-                    minDist = dist;
-                }
-            }
-        }
-
-        return minDist;
+        performClustering();
     }
 
     private void initializeData() {
@@ -53,28 +39,101 @@ public class Clustering extends JPanel {
         dataPoints.add(new DataPoint("C2", 6, 16, Color.GREEN));
     }
 
+    private void performClustering() {
+        // Initialize each data point as its own cluster
+        clusters = new ArrayList<>();
+        for (DataPoint point : dataPoints) {
+            Cluster cluster = new Cluster();
+            cluster.addPoint(point);
+            clusters.add(cluster);
+        }
+
+        System.out.println("Initial clusters: " + clusters.size());
+        for (Cluster c : clusters) {
+            System.out.println("Cluster with point: " + c.points.get(0).name);
+        }
+
+
+        while (clusters.size() > 1) {
+            int minI = 0, minJ = 1;
+            double minDistance = Double.MAX_VALUE;
+
+            for (int i = 0; i < clusters.size(); i++) {
+                for (int j = i + 1; j < clusters.size(); j++) {
+                    double distance = calculateDistance(clusters.get(i), clusters.get(j));
+                    if (distance < minDistance) {
+                        minDistance = distance;
+                        minI = i;
+                        minJ = j;
+                    }
+                }
+            }
+
+            Cluster merged = mergeClusters(clusters.get(minI), clusters.get(minJ), minDistance);
+
+            Cluster cluster1 = clusters.remove(minJ);
+            Cluster cluster2 = clusters.remove(minI);
+            clusters.add(merged);
+
+
+            System.out.println("Remaining clusters: " + clusters.size());
+        }
+    }
+
+    private double calculateDistance(Cluster c1, Cluster c2) {
+        // Use single linkage (minimum distance between any two points)
+        double minDist = Double.MAX_VALUE;
+
+        for (DataPoint p1 : c1.points) {
+            for (DataPoint p2 : c2.points) {
+                double dist = Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2));
+                if (dist < minDist) {
+                    minDist = dist;
+                }
+            }
+        }
+
+        return minDist;
+    }
+
+    private Cluster mergeClusters(Cluster c1, Cluster c2, double distance) {
+        Cluster merged = new Cluster();
+        for (DataPoint p : c1.points) {
+            merged.addPoint(p);
+        }
+        for (DataPoint p : c2.points) {
+            merged.addPoint(p);
+        }
+
+        merged.leftChild = c1;
+        merged.rightChild = c2;
+        merged.distance = distance;
+
+        return merged;
+    }
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-        // Set positions for data points on the screen
+        // Set positions for data points
         int y = MARGIN_TOP;
         for (DataPoint point : dataPoints) {
             point.screenY = y;
             y += POINT_SPACING;
         }
 
-        // Draw the data points and their labels
+        // Draw the data points
         for (DataPoint point : dataPoints) {
             g2d.setColor(point.color);
-            g2d.fillOval(MARGIN_LEFT - DOT_SIZE/2, point.screenY - DOT_SIZE/2, DOT_SIZE, DOT_SIZE);
+            g2d.fillOval(MARGIN_LEFT - DOT_SIZE / 2, point.screenY - DOT_SIZE / 2, DOT_SIZE, DOT_SIZE);
             g2d.drawString(point.name + " (" + point.x + ", " + point.y + ")",
                     MARGIN_LEFT + 10, point.screenY + 5);
         }
 
-        // Draw the axis
+        // Draw axis
         g2d.setColor(Color.BLACK);
         g2d.drawLine(MARGIN_LEFT, 20, MARGIN_LEFT, getHeight() - 30);
     }
@@ -93,9 +152,36 @@ public class Clustering extends JPanel {
         }
     }
 
+    private static class Cluster {
+        List<DataPoint> points = new ArrayList<>();
+        Cluster leftChild;
+        Cluster rightChild;
+        double distance;
+
+        void addPoint(DataPoint point) {
+            points.add(point);
+        }
+
+        boolean isLeaf() {
+            return leftChild == null && rightChild == null;
+        }
+
+        Color getColor() {
+            if (points.isEmpty()) return Color.BLACK;
+
+            int r = 0, g = 0, b = 0;
+            for (DataPoint p : points) {
+                r += p.color.getRed();
+                g += p.color.getGreen();
+                b += p.color.getBlue();
+            }
+            return new Color(r / points.size(), g / points.size(), b / points.size());
+        }
+    }
+
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            JFrame frame = new JFrame("Data Points");
+            JFrame frame = new JFrame("Clustering");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.add(new Clustering());
             frame.pack();
