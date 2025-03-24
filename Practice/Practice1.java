@@ -7,35 +7,34 @@ public class Practice1 extends JPanel {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
 
-        g2d.setColor(Color.black);
+        g2d.setColor(Color.RED);
 
-        int x = 200;
+        int x = 150;
         int[] y = {50, 100, 150, 200, 250, 300};
 
         for (int i = 0; i < 6; i++) {
             g2d.fillOval(x - 5, y[i] - 5, 10, 10);
         }
 
-        g2d.setColor(Color.green);
-        int lineX = 50;
+        g2d.setColor(Color.BLUE);
 
 
-        g2d.drawLine(lineX, y[0], lineX + 40, y[0]);
-        g2d.drawLine(lineX + 40, y[0], lineX + 40, y[1]);
-        g2d.drawLine(lineX + 40, y[1], lineX, y[1]);
-        g2d.drawLine(lineX - 10, (y[0] + y[1]) / 2, lineX + 40, (y[0] + y[1]) / 2);
+        g2d.drawLine(x, y[0], x + 40, y[0]);
+        g2d.drawLine(x + 40, y[0], x + 40, y[1]);
+        g2d.drawLine(x + 40, y[1], x, y[1]);
+        g2d.drawLine(x + 50, (y[0] + y[1]) / 2, x - 40, (y[0] + y[1]) / 2);
 
 
-        g2d.drawLine(lineX, y[2], lineX + 40, y[2]);
-        g2d.drawLine(lineX + 40, y[2], lineX + 40, y[3]);
-        g2d.drawLine(lineX + 40, y[3], lineX, y[3]);
-        g2d.drawLine(lineX - 10, (y[2] + y[3]) / 2, lineX + 40, (y[2] + y[3]) / 2);
+        g2d.drawLine(x, y[2], x - 40, y[2]);
+        g2d.drawLine(x - 40, y[2], x - 40, y[3]);
+        g2d.drawLine(x - 40, y[3], x, y[3]);
+        g2d.drawLine(x - 50, (y[2] + y[3]) / 2, x - 40, (y[2] + y[3]) / 2);
 
 
-        g2d.drawLine(lineX, y[4], lineX + 40, y[4]);
-        g2d.drawLine(lineX + 40, y[4], lineX + 40, y[5]);
-        g2d.drawLine(lineX + 40, y[5], lineX, y[5]);
-        g2d.drawLine(lineX - 10, (y[4] + y[5]) / 2, lineX + 40, (y[4] + y[5]) / 2);
+        g2d.drawLine(x, y[4], x - 40, y[4]);
+        g2d.drawLine(x - 40, y[4], x - 40, y[5]);
+        g2d.drawLine(x - 40, y[5], x, y[5]);
+        g2d.drawLine(x - 50, (y[4] + y[5]) / 2, x - 40, (y[4] + y[5]) / 2);
     }
 
     public static void main(String[] args) {
