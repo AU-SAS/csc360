@@ -48,12 +48,6 @@ public class Clustering extends JPanel {
             clusters.add(cluster);
         }
 
-        System.out.println("Initial clusters: " + clusters.size());
-        for (Cluster c : clusters) {
-            System.out.println("Cluster with point: " + c.points.get(0).name);
-        }
-
-
         while (clusters.size() > 1) {
             int minI = 0, minJ = 1;
             double minDistance = Double.MAX_VALUE;
@@ -69,14 +63,11 @@ public class Clustering extends JPanel {
                 }
             }
 
-            Cluster merged = mergeClusters(clusters.get(minI), clusters.get(minJ), minDistance);
 
+            Cluster merged = mergeClusters(clusters.get(minI), clusters.get(minJ), minDistance);
             Cluster cluster1 = clusters.remove(minJ);
             Cluster cluster2 = clusters.remove(minI);
             clusters.add(merged);
-
-
-            System.out.println("Remaining clusters: " + clusters.size());
         }
     }
 
@@ -117,25 +108,49 @@ public class Clustering extends JPanel {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-
-        // Set positions for data points
+        g2d.setStroke(new BasicStroke(1.5f));
         int y = MARGIN_TOP;
         for (DataPoint point : dataPoints) {
             point.screenY = y;
             y += POINT_SPACING;
         }
-
-        // Draw the data points
         for (DataPoint point : dataPoints) {
             g2d.setColor(point.color);
-            g2d.fillOval(MARGIN_LEFT - DOT_SIZE / 2, point.screenY - DOT_SIZE / 2, DOT_SIZE, DOT_SIZE);
-            g2d.drawString(point.name + " (" + point.x + ", " + point.y + ")",
-                    MARGIN_LEFT + 10, point.screenY + 5);
+            g2d.fillOval(MARGIN_LEFT - DOT_SIZE/2, point.screenY - DOT_SIZE/2, DOT_SIZE, DOT_SIZE);
+            g2d.drawString(point.name, MARGIN_LEFT - 30, point.screenY + 5);
         }
 
-        // Draw axis
+        if (!clusters.isEmpty()) {
+            Cluster rootCluster = clusters.get(0);
+            drawDendrogram(g2d, rootCluster, MARGIN_LEFT + 20);
+        }
+
         g2d.setColor(Color.BLACK);
         g2d.drawLine(MARGIN_LEFT, 20, MARGIN_LEFT, getHeight() - 30);
+        g2d.drawLine(MARGIN_LEFT, getHeight() - 30, getWidth() - 50, getHeight() - 30);
+        g2d.drawString("Distance →", getWidth() - 100, getHeight() - 10);
+    }
+
+    private int drawDendrogram(Graphics2D g2d, Cluster cluster, int x) {
+        if (cluster.isLeaf()) {
+            DataPoint point = cluster.points.get(0);
+            g2d.setColor(point.color);
+            g2d.drawLine(MARGIN_LEFT, point.screenY, x, point.screenY);
+
+            return point.screenY;
+        } else {
+            int leftY = drawDendrogram(g2d, cluster.leftChild, x);
+            int rightY = drawDendrogram(g2d, cluster.rightChild, x);
+            int newX = x + (int)(cluster.distance * 15);
+
+            // Draw connecting lines
+            g2d.setColor(cluster.getColor());
+            g2d.drawLine(newX, leftY, newX, rightY);
+            g2d.drawLine(x, leftY, newX, leftY);
+            g2d.drawLine(x, rightY, newX, rightY);
+
+            return (leftY + rightY) / 2;
+        }
     }
 
     private static class DataPoint {
@@ -168,7 +183,6 @@ public class Clustering extends JPanel {
 
         Color getColor() {
             if (points.isEmpty()) return Color.BLACK;
-
             int r = 0, g = 0, b = 0;
             for (DataPoint p : points) {
                 r += p.color.getRed();
