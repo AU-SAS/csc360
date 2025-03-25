@@ -194,13 +194,13 @@ public class Clustering extends JPanel {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
+ //       SwingUtilities.invokeLater(() -> {
             JFrame frame = new JFrame("Clustering");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.add(new Clustering());
             frame.pack();
             frame.setLocationRelativeTo(null);
             frame.setVisible(true);
-        });
+        //});
     }
 }
