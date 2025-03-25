@@ -6,10 +6,10 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-public class Step_10_Load_Image extends JFrame
+public class Load_Image extends JFrame
 {
     private BufferedImage loadedImage;
-    public Step_10_Load_Image()
+    public Load_Image()
     {
         setTitle("Image Loader & Texture Example");
         setSize(800, 600);
@@ -106,6 +106,6 @@ public class Step_10_Load_Image extends JFrame
     }
     public static void main(String[] args)
     {
-        new Step_10_Load_Image();
+        new Load_Image();
     }
 }

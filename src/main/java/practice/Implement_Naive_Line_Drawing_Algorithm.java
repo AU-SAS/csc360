@@ -3,10 +3,10 @@ package practice;
 import javax.swing.*;
 import java.awt.*;
 
-public class Step_7_Implement_Naive_Line_Drawing_Algorithm extends JPanel
+public class Implement_Naive_Line_Drawing_Algorithm extends JPanel
 {
     private final int x1, y1, x2, y2;
-    public Step_7_Implement_Naive_Line_Drawing_Algorithm(int num1, int num2, int num3, int num4)
+    public Implement_Naive_Line_Drawing_Algorithm(int num1, int num2, int num3, int num4)
     {
         this.x1 = num1;
         this.y1 = num2;
@@ -53,7 +53,7 @@ public class Step_7_Implement_Naive_Line_Drawing_Algorithm extends JPanel
 
         // Create a frame to display the line
         JFrame frame = new JFrame("Naïve Line Drawing Algorithm");
-        Step_7_Implement_Naive_Line_Drawing_Algorithm linePanel = new Step_7_Implement_Naive_Line_Drawing_Algorithm(x1, y1, x2, y2);
+        Implement_Naive_Line_Drawing_Algorithm linePanel = new Implement_Naive_Line_Drawing_Algorithm(x1, y1, x2, y2);
 
         frame.add(linePanel);
         frame.pack();

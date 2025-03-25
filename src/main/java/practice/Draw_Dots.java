@@ -3,7 +3,7 @@ package practice;
 import javax.swing.*;
 import java.awt.*;
 
-public class Step_1_Draw_Dots extends JPanel
+public class Draw_Dots extends JPanel
 {
     @Override
     protected void paintComponent(Graphics g)
@@ -23,7 +23,7 @@ public class Step_1_Draw_Dots extends JPanel
     public static void main(String[] args) {
         // Create a JFrame to hold the JPanel
         JFrame frame = new JFrame("Draw Dots Example");
-        Step_1_Draw_Dots panel = new Step_1_Draw_Dots();
+        Draw_Dots panel = new Draw_Dots();
 
         frame.add(panel);
         frame.setSize(300, 200);

@@ -3,11 +3,11 @@ package practice;
 import javax.swing.*;
 import java.awt.*;
 
-public class Step_9_Implement_Midpoint_Algorithm_for_Lines extends JPanel
+public class Implement_Midpoint_Algorithm_for_Lines extends JPanel
 {
     private final int x1, y1, x2, y2;
 
-    public Step_9_Implement_Midpoint_Algorithm_for_Lines(int x1, int y1, int x2, int y2)
+    public Implement_Midpoint_Algorithm_for_Lines(int x1, int y1, int x2, int y2)
     {
         this.x1 = x1;
         this.y1 = y1;
@@ -64,7 +64,7 @@ public class Step_9_Implement_Midpoint_Algorithm_for_Lines extends JPanel
 
         // Create a frame to display the line
         JFrame frame = new JFrame("Midpoint Line Drawing Algorithm");
-        Step_9_Implement_Midpoint_Algorithm_for_Lines linePanel = new Step_9_Implement_Midpoint_Algorithm_for_Lines(x1, y1, x2, y2);
+        Implement_Midpoint_Algorithm_for_Lines linePanel = new Implement_Midpoint_Algorithm_for_Lines(x1, y1, x2, y2);
 
         frame.add(linePanel);
         frame.pack();
