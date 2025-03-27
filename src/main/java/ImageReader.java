@@ -1,4 +1,6 @@
 import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -6,13 +8,23 @@ import java.io.IOException;
 public class ImageReader {
     public static void main(String[] args) {
         try {
-            // Create a File object pointing to the PNG image
             File file = new File("C:/Users/PARIDHI/Downloads/CSI Holi.png");
-            // Read the PNG file into a BufferedImage
             BufferedImage image = ImageIO.read(file);
-            // Now you can work with the image
+
+            if (image != null) {
+                JFrame frame = new JFrame("Image Viewer");
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.setSize(image.getWidth(), image.getHeight());
+                ImageIcon icon = new ImageIcon(image);
+                JLabel label = new JLabel(icon);
+                frame.add(label);
+                frame.pack();
+                frame.setVisible(true);
+            } else {
+                System.out.println("Error: Could not load image.");
+            }
+
         } catch (IOException e) {
-            // Handle the exception
             e.printStackTrace();
         }
     }
