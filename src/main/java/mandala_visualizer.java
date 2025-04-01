@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class mandala_visualizer extends JPanel
 {
-    private Color currentColor = Color.WHITE;
+    private Color currentColor = new Color(212, 104, 164);
 
     public mandala_visualizer() {
         setPreferredSize(new Dimension(400, 400));

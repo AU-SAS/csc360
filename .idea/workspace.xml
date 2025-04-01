@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="878c3c88-6bb7-4fc8-9046-9e58e53cdf12" name="Changes" comment="A simple mandala design">
-      <change afterPath="$PROJECT_DIR$/src/main/java/mandala_visualizer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="878c3c88-6bb7-4fc8-9046-9e58e53cdf12" name="Changes" comment="A mandala visualizer with color buttons">
+      <change beforePath="$PROJECT_DIR$/src/main/java/mandala_visualizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mandala_visualizer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,7 +129,7 @@
       <workItem from="1742762804318" duration="1107000" />
       <workItem from="1743053705216" duration="597000" />
       <workItem from="1743485299495" duration="3077000" />
-      <workItem from="1743501023037" duration="960000" />
+      <workItem from="1743501023037" duration="1498000" />
     </task>
     <task id="LOCAL-00001" summary="Activity 4 Draw a car">
       <option name="closed" value="true" />
@@ -204,7 +203,23 @@
       <option name="project" value="LOCAL" />
       <updated>1742725438618</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="A mandala visualizer with color buttons">
+      <option name="closed" value="true" />
+      <created>1743502383582</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1743502383582</updated>
+    </task>
+    <task id="LOCAL-00011" summary="A mandala visualizer with color buttons">
+      <option name="closed" value="true" />
+      <created>1743502490077</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1743502490077</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -227,6 +242,7 @@
     <MESSAGE value="project demo- dots and cluster" />
     <MESSAGE value="Homework1 Color and shapes visualizer" />
     <MESSAGE value="A simple mandala design" />
-    <option name="LAST_COMMIT_MESSAGE" value="A simple mandala design" />
+    <MESSAGE value="A mandala visualizer with color buttons" />
+    <option name="LAST_COMMIT_MESSAGE" value="A mandala visualizer with color buttons" />
   </component>
 </project>
