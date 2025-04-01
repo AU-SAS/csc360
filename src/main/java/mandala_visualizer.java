@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class mandala_visualizer extends JPanel
 {
-    private Color currentColor = Color.WHITE; //default color
+    private Color currentColor = Color.WHITE;
 
     public mandala_visualizer() {
         setPreferredSize(new Dimension(400, 400));
@@ -51,7 +51,7 @@ public class mandala_visualizer extends JPanel
 
         public void setColor(Color color) {
             this.currentColor = color;
-            repaint(); // repaint the color
+            repaint(); //  to repaint the color
         }
 
     public static void main(String[] args) {
@@ -59,18 +59,18 @@ public class mandala_visualizer extends JPanel
         mandala_visualizer visualizer = new mandala_visualizer();
 
 
-            JPanel colorPanel = new JPanel(new GridLayout(1, 3)); //color button grid
+            JPanel colorPanel = new JPanel(new GridLayout(1, 3));
             String[] colorNames = {"Burgundy", "Olive", "Blue"};
-            Color[] vibgyor = {new Color(109, 0, 22),new Color(75, 77, 57), new Color(33,56,91)}; //VIBGYOR
-            for (int i = 0; i < vibgyor.length; i++) {
-                final Color selectedColor = vibgyor[i];
+            Color[] color1 = {new Color(109, 0, 22),new Color(75, 77, 57), new Color(33,56,91)}; //VIBGYOR
+            for (int i = 0; i < color1.length; i++) {
+                final Color selectedColor = color1[i];
                 JButton button = new JButton(colorNames[i]);
                 button.setOpaque(true);
                 button.addActionListener(e -> visualizer.setColor(selectedColor));
                 colorPanel.add(button);
             }
             frame.setLayout(new BorderLayout());
-            frame.add(colorPanel, BorderLayout.SOUTH); //position of color button
+            frame.add(colorPanel, BorderLayout.SOUTH);
             frame.add(visualizer);
             frame.pack();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
