@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="878c3c88-6bb7-4fc8-9046-9e58e53cdf12" name="Changes" comment="A mandala visualizer with color buttons">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Step_0_JavaFX_Hello_World.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/leftandright.java" afterDir="false" />
+    <list default="true" id="878c3c88-6bb7-4fc8-9046-9e58e53cdf12" name="Changes" comment="left and right">
+      <change afterPath="$PROJECT_DIR$/src/main/java/practice/leftandright.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Step_0_JavaFX_Hello_World.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Step_0_JavaFX_Hello_World.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +20,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="JavaFXApplication" />
         <option value="Class" />
       </list>
     </option>
@@ -42,16 +43,16 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "history": [
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;history&quot;: [
     {
-      "author": "shashi2y22"
+      &quot;author&quot;: &quot;shashi2y22&quot;
     }
   ],
-  "lastFilter": {
-    "author": "shashi2y22"
+  &quot;lastFilter&quot;: {
+    &quot;author&quot;: &quot;shashi2y22&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/AU-SAS/csc360.git&quot;,
@@ -78,6 +79,7 @@
     "Application.Step_4_Draw_Quadratic_and_Cubic_Curve.executor": "Run",
     "Application.Step_5_Draw_Polygons.executor": "Run",
     "Application.activity4.executor": "Run",
+    "Application.leftandright.executor": "Run",
     "Application.mandala.executor": "Run",
     "Application.mandala_visualizer.executor": "Run",
     "Application.projectdemo.executor": "Run",
@@ -92,7 +94,10 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "editor.preferences.tabs",
+    "project.structure.last.edited": "Problems",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -102,8 +107,8 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="activity4" type="Application" factoryName="Application" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="activity4" />
+    <configuration name="Step_0_JavaFX_Hello_World" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Step_0_JavaFX_Hello_World" />
       <module name="csc360" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -116,6 +121,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="activity4" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="activity4" />
+      <module name="csc360" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Step_0_JavaFX_Hello_World" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -146,7 +163,9 @@
       <workItem from="1743501023037" duration="1527000" />
       <workItem from="1743612011712" duration="450000" />
       <workItem from="1743669137432" duration="1342000" />
-      <workItem from="1744090417794" duration="1805000" />
+      <workItem from="1744090417794" duration="2667000" />
+      <workItem from="1744093131599" duration="2592000" />
+      <workItem from="1744103837089" duration="1856000" />
     </task>
     <task id="LOCAL-00001" summary="Activity 4 Draw a car">
       <option name="closed" value="true" />
@@ -244,7 +263,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743502554799</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="left and right">
+      <option name="closed" value="true" />
+      <created>1744092433623</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1744092433623</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -268,6 +295,7 @@
     <MESSAGE value="Homework1 Color and shapes visualizer" />
     <MESSAGE value="A simple mandala design" />
     <MESSAGE value="A mandala visualizer with color buttons" />
-    <option name="LAST_COMMIT_MESSAGE" value="A mandala visualizer with color buttons" />
+    <MESSAGE value="left and right" />
+    <option name="LAST_COMMIT_MESSAGE" value="left and right" />
   </component>
 </project>

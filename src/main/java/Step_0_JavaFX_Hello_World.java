@@ -15,8 +15,8 @@ public class Step_0_JavaFX_Hello_World extends Application {
         btn.setOnAction(e -> System.out.println("Hello from JavaFX!"));
 
         // Create a layout and add the button to it
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);
+        StackPane root = new StackPane(); //hold the button
+        root.getChildren().add(btn); //child of stack pane
 
         // Create a scene with the layout
         Scene scene = new Scene(root, 300, 200);
@@ -24,7 +24,7 @@ public class Step_0_JavaFX_Hello_World extends Application {
         // Set up the stage (window)
         primaryStage.setTitle("Hello JavaFX");
         primaryStage.setScene(scene);
-        primaryStage.show();
+        primaryStage.show(); //like set visible
     }
 
     public static void main(String[] args) {
