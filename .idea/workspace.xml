@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="878c3c88-6bb7-4fc8-9046-9e58e53cdf12" name="Changes" comment="left and right">
-      <change afterPath="$PROJECT_DIR$/src/main/java/practice/leftandright.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Step_0_JavaFX_Hello_World.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Step_0_JavaFX_Hello_World.java" afterDir="false" />
+    <list default="true" id="878c3c88-6bb7-4fc8-9046-9e58e53cdf12" name="Changes" comment="front and reverse vehicle movement">
+      <change afterPath="$PROJECT_DIR$/src/main/java/SimpleMandala.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +92,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Problems",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.pluginManager",
@@ -165,7 +163,7 @@
       <workItem from="1743669137432" duration="1342000" />
       <workItem from="1744090417794" duration="2667000" />
       <workItem from="1744093131599" duration="2592000" />
-      <workItem from="1744103837089" duration="1856000" />
+      <workItem from="1744103837089" duration="2246000" />
     </task>
     <task id="LOCAL-00001" summary="Activity 4 Draw a car">
       <option name="closed" value="true" />
@@ -271,7 +269,23 @@
       <option name="project" value="LOCAL" />
       <updated>1744092433623</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="front and reverse vehicle movement">
+      <option name="closed" value="true" />
+      <created>1744105980274</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1744105980274</updated>
+    </task>
+    <task id="LOCAL-00015" summary="front and reverse vehicle movement">
+      <option name="closed" value="true" />
+      <created>1744106090259</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1744106090259</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -296,6 +310,7 @@
     <MESSAGE value="A simple mandala design" />
     <MESSAGE value="A mandala visualizer with color buttons" />
     <MESSAGE value="left and right" />
-    <option name="LAST_COMMIT_MESSAGE" value="left and right" />
+    <MESSAGE value="front and reverse vehicle movement" />
+    <option name="LAST_COMMIT_MESSAGE" value="front and reverse vehicle movement" />
   </component>
 </project>
