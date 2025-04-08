@@ -1,3 +1,5 @@
+package misc;
+
 import javax.swing.*;
 import java.awt.*;
 public class Homework_Activity_1 extends JFrame
