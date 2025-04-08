@@ -23,6 +23,7 @@ public class Step_10_Load_Image extends JFrame
         JPanel buttonPanel = new JPanel();
         buttonPanel.add(loadButton);
         buttonPanel.add(saveButton);
+
         // Drawing Panel
         JPanel drawPanel = new JPanel()
         {
