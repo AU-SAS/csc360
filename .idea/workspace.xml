@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="878c3c88-6bb7-4fc8-9046-9e58e53cdf12" name="Changes" comment="A mandala visualizer with color buttons">
-      <change beforePath="$PROJECT_DIR$/src/main/java/mandala_visualizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mandala_visualizer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Step_0_JavaFX_Hello_World.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/leftandright.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,12 +42,16 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;mahek-25&quot;
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "history": [
+    {
+      "author": "shashi2y22"
+    }
+  ],
+  "lastFilter": {
+    "author": "shashi2y22"
   }
-}</component>
+}]]></component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/AU-SAS/csc360.git&quot;,
@@ -68,6 +74,7 @@
     "Application.Activity4_drawcar.executor": "Run",
     "Application.MandalaDrawing.executor": "Run",
     "Application.SimpleMandala.executor": "Run",
+    "Application.Step_0_JavaFX_Hello_World.executor": "Run",
     "Application.Step_4_Draw_Quadratic_and_Cubic_Curve.executor": "Run",
     "Application.Step_5_Draw_Polygons.executor": "Run",
     "Application.activity4.executor": "Run",
@@ -102,6 +109,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="activity4" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="activity4" />
+      <module name="csc360" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -129,7 +143,10 @@
       <workItem from="1742762804318" duration="1107000" />
       <workItem from="1743053705216" duration="597000" />
       <workItem from="1743485299495" duration="3077000" />
-      <workItem from="1743501023037" duration="1498000" />
+      <workItem from="1743501023037" duration="1527000" />
+      <workItem from="1743612011712" duration="450000" />
+      <workItem from="1743669137432" duration="1342000" />
+      <workItem from="1744090417794" duration="1805000" />
     </task>
     <task id="LOCAL-00001" summary="Activity 4 Draw a car">
       <option name="closed" value="true" />
@@ -219,7 +236,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743502490077</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="A mandala visualizer with color buttons">
+      <option name="closed" value="true" />
+      <created>1743502554799</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1743502554799</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
