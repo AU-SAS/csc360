@@ -5,7 +5,7 @@ import java.util.Random;
 public class practice10 extends JPanel {
     int[][] points = new int[100][2];
     int[] clusters = new int[100];
-    int k = 3; // Number of clusters
+    int k = 3;
 
     public practice10() {
         generateRandomPoints();
@@ -15,15 +15,15 @@ public class practice10 extends JPanel {
     void generateRandomPoints() {
         Random rand = new Random();
         for (int i = 0; i < points.length; i++) {
-            points[i][0] = rand.nextInt(600); // x
-            points[i][1] = rand.nextInt(400); // y
+            points[i][0] = rand.nextInt(600);
+            points[i][1] = rand.nextInt(400);
         }
     }
 
     void assignClusters() {
         Random rand = new Random();
         for (int i = 0; i < clusters.length; i++) {
-            clusters[i] = rand.nextInt(k); // Randomly assign to 0, 1 or 2
+            clusters[i] = rand.nextInt(k);
         }
     }
 
