@@ -1,14 +1,12 @@
-package prac;
-
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-class PixelDataReader {
+class pixel {
     public static void main(String[] args) {
         try {
-            File file = new File("C:/Users/PARIDHI/Downloads/CSI Holi.png");
+            File file = new File("C:/khushi/Admin/Desktop");
             BufferedImage image = ImageIO.read(file);
             int width = image.getWidth();
             int height = image.getHeight();
