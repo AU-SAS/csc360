@@ -2,7 +2,6 @@ package project;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.*;
 
 public class Draw_Cluster extends JPanel {
 
@@ -11,42 +10,49 @@ public class Draw_Cluster extends JPanel {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
         g2d.setStroke(new BasicStroke(2));
-        Random r_color = new Random();
 
         // Define dot size
         int dotSize = 6;
+
+        Color g1Color = new Color(255, 99, 71);     // Tomato
+        Color g2Color = new Color(60, 179, 113);    // Medium Sea Green
+        Color g3Color = new Color(100, 149, 237);   // Cornflower Blue
 
         // Layer 1: 3 boxes (BOX 1) - Now vertical
         // G1
         g2d.setColor(Color.BLACK);
         g2d.drawRect(50, 50, 80, 70);
         g2d.drawString("G1", 50, 45);
-        drawDotsInBox(g2d, 50, 50, 80, 70, 4, dotSize, r_color);
+        drawDotsInBox(g2d, 50, 50, 80, 70, 4, dotSize, g1Color);
         // G2
+        g2d.setColor(Color.BLACK);
         g2d.drawRect(50, 170, 80, 70);
         g2d.drawString("G2", 50, 165);
-        drawDotsInBox(g2d, 50, 170, 80, 70, 3, dotSize, r_color);
+        drawDotsInBox(g2d, 50, 170, 80, 70, 3, dotSize, g2Color);
         // G3
+        g2d.setColor(Color.BLACK);
         g2d.drawRect(50, 290, 80, 70);
         g2d.drawString("G3", 50, 285);
-        drawDotsInBox(g2d, 50, 290, 80, 70, 3, dotSize, r_color);
+        drawDotsInBox(g2d, 50, 290, 80, 70, 3, dotSize, g3Color);
 
         // Layer 2: 2 boxes (BOX 2)
         // G1
+        g2d.setColor(Color.BLACK);
         g2d.drawRect(200, 110, 80, 70);
         g2d.drawString("G1", 200, 105);
-        drawDotsInBox(g2d, 200, 110, 80, 70, 7, dotSize, r_color);
+        drawDotsInBox(g2d, 200, 110, 80, 70, 7, dotSize, g1Color);
         // G2
+        g2d.setColor(Color.BLACK);
         g2d.drawRect(200, 230, 80, 70);
         g2d.drawString("G2", 200, 225);
-        drawDotsInBox(g2d, 200, 230, 80, 70, 3, dotSize, r_color);
+        drawDotsInBox(g2d, 200, 230, 80, 70, 3, dotSize, g2Color);
 
         // Layer 3: 1 box (BOX 3)
         // G1
+        g2d.setColor(Color.BLACK);
         g2d.drawRect(350, 170, 80, 70);
         g2d.drawString("G1", 350, 165);
-        drawDotsInBox(g2d, 350, 170, 80, 70, 10, dotSize, r_color);
-
+        drawDotsInBox(g2d, 350, 170, 80, 70, 10, dotSize, g1Color);
 
         // Draw connections
         g2d.setColor(Color.BLACK);
@@ -67,7 +73,7 @@ public class Draw_Cluster extends JPanel {
     }
 
     // Helper method to draw dots in a box
-    private void drawDotsInBox(Graphics2D g2d, int x, int y, int width, int height, int numDots, int dotSize, Random r_color) {
+    private void drawDotsInBox(Graphics2D g2d, int x, int y, int width, int height, int numDots, int dotSize, Color dotColor) {
         int cols = 2;
 
         for (int i = 0; i < numDots; i++) {
@@ -77,8 +83,7 @@ public class Draw_Cluster extends JPanel {
             int dotX = x + (col + 1) * (width / (cols + 1)) - dotSize / 2;
             int dotY = y + (row + 1) * (height / ((int)Math.ceil((double)numDots/cols) + 1)) - dotSize / 2;
 
-            Color randomColor = new Color(r_color.nextInt(255), r_color.nextInt(255), r_color.nextInt(255));
-            g2d.setColor(randomColor);
+            g2d.setColor(dotColor);
             g2d.fillOval(dotX, dotY, dotSize, dotSize);
         }
     }
