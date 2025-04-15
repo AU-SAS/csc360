@@ -23,6 +23,8 @@ public class main_project extends JPanel {
             int y= 20 + (i*40)%400; // 400% added so it doesn't overflow from the screen (400 pixels)
             points.add(new Point(x, y)); //saves circle position
         }
+
+        generateClusters();
     }
     private void generateClusters() { //k means algorithm
         int number_of_clusters = Math.max(1, (int) Math.sqrt(k)); //decides how many clusters we want
@@ -99,12 +101,103 @@ public class main_project extends JPanel {
 
     }
 
-
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
         g2d.setStroke(new BasicStroke(2)); //keeps the stroke thick
+
+        int diameter = 10;
+
+        //first layer of clusters
+        ArrayList<int[]> cluster_box = new ArrayList<>(); // array of num of cluster boxes
+        ArrayList<Integer> y_values = new ArrayList<>();
+
+        int current_y=20;
+        for (ArrayList<Integer> cluster : clusters) {
+            if (cluster.isEmpty()) continue;
+            int box_top = current_y;
+
+            for (int idx : cluster) {
+                Color random_colors = new Color(r_color.nextInt(255), r_color.nextInt(255), r_color.nextInt(255));
+                g2d.setColor(random_colors);
+                Point p = points.get(idx);
+                g2d.fillOval(p.x, p.y, diameter, diameter);
+                current_y += 30;
+            }
+
+            int box_bottom = current_y + 10;
+            cluster_box.add(new int[]{box_top, box_bottom});
+            current_y += 20; // Space between clusters
+        }
+
+        g2d.setColor(Color.BLACK);
+        for (int[] box : cluster_box) {
+            int[] x_points = {20, 60, 60, 20};
+            int[] y_points = {box[0], box[0], box[1], box[1]};
+            g2d.drawPolygon(x_points, y_points, 4);
+
+            int link_y = box[0] + (box[1] - box[0]) / 2;
+            g2d.drawLine(60, link_y, 90, link_y);
+            y_values.add(link_y);
+        }
+
+        int layer_x = 100;
+        int layer_diameter = 20;
+        ArrayList<ArrayList<Integer>> current_layer = new ArrayList<>();
+        current_layer.add(y_values);
+
+        while (current_layer.get(current_layer.size() - 1).size() > 1) {
+            ArrayList<Integer> prev_layer = current_layer.get(current_layer.size() - 1);
+            ArrayList<Integer> next_layer_y = new ArrayList<>();
+            ArrayList<int[]> next_boxes = new ArrayList<>();
+
+            for (int i = 0; i < prev_layer.size(); i += 2) {
+                Color random_colors = new Color(r_color.nextInt(255), r_color.nextInt(255), r_color.nextInt(255));
+                g2d.setColor(random_colors);
+
+                int y_top = prev_layer.get(i);
+                int y_bottom = (i + 1 < prev_layer.size()) ? prev_layer.get(i + 1) : y_top;
+                int link_y = (y_top + y_bottom) / 2;
+
+                g2d.fillOval(layer_x, link_y - layer_diameter / 2, layer_diameter, layer_diameter);
+
+                int box_top = Math.min(y_top, y_bottom) - 15;
+                int box_bottom = Math.max(y_top, y_bottom) + 15;
+                next_boxes.add(new int[]{box_top, box_bottom});
+                next_layer_y.add(link_y);
+            }
+
+            g2d.setColor(Color.BLACK);
+            for (int[] box : next_boxes) {
+                int[] x_points = {layer_x - 10, layer_x + 30, layer_x + 30, layer_x - 10};
+                int[] y_points = {box[0], box[0], box[1], box[1]};
+                g2d.drawPolygon(x_points, y_points, 4);
+
+                int link_y = box[0] + (box[1] - box[0]) / 2;
+                g2d.drawLine(layer_x + 30, link_y, layer_x + 60, link_y);
+            }
+
+            current_layer.add(next_layer_y);
+            layer_x += 70;
+            layer_diameter += 10;
+        }
+
+        if (current_layer.get(current_layer.size() - 1).size() == 1) {
+            Color random_colors = new Color(r_color.nextInt(255), r_color.nextInt(255), r_color.nextInt(255));
+            g2d.setColor(random_colors);
+            int link_y = current_layer.get(current_layer.size() - 1).get(0);
+            g2d.fillOval(layer_x, link_y - layer_diameter / 2, layer_diameter, layer_diameter);
+
+            g2d.setColor(Color.BLACK);
+            int[] x_points = {layer_x - 10, layer_x + 50, layer_x + 50, layer_x - 10};
+            int[] y_points = {link_y - 30, link_y - 30, link_y + 30, link_y + 30};
+            g2d.drawPolygon(x_points, y_points, 4);
+        }
+
+
+
+
     }
 
 
