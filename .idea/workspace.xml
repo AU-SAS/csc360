@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="768e41ac-c706-4ce5-917c-7e98603d5fba" name="Changes" comment="Practice">
-      <change afterPath="$PROJECT_DIR$/Project/TreeCluster.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Project/ClassClustering.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,10 +38,12 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Application.ClassClustering.executor": "Run",
     "Application.Clusterizer.executor": "Run",
     "Application.SimpleKMeans.executor": "Run",
     "Application.Step_0_JavaFX_Hello_World.executor": "Run",
     "Application.Step_1_JavaFX_Layout.executor": "Run",
+    "Application.TreeCluster.executor": "Run",
     "Application.Unnamed.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -103,7 +105,7 @@
       <workItem from="1744093217234" duration="1615000" />
       <workItem from="1744696551088" duration="1196000" />
       <workItem from="1744735888809" duration="187000" />
-      <workItem from="1744736094974" duration="1814000" />
+      <workItem from="1744736094974" duration="2381000" />
     </task>
     <task id="LOCAL-00001" summary="Practice program">
       <option name="closed" value="true" />
@@ -145,7 +147,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744737979743</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Practice">
+      <option name="closed" value="true" />
+      <created>1744738497312</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1744738497312</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
