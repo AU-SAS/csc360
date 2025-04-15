@@ -1,61 +1,56 @@
-package project;
-
 import javax.swing.*;
 import java.awt.*;
 
-public class Draw_Dots extends JPanel {
 
+public class Draw_Dots extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g; // Explicitly cast Graphics to Graphics2D
+        Graphics2D g2d = (Graphics2D) g;
 
-        // Array of VIBGYOR colors
-        Color[] vibgyorColors = {
-                Color.RED,
-                Color.ORANGE,
-                Color.YELLOW,
-                Color.GREEN,
-                Color.BLUE,
-                new Color(75, 0, 130), // Indigo
-                new Color(138, 43, 226) // Violet
-        };
 
-        // Starting coordinates for the first dot
-        int startX = 50;
-        int startY = 50;
-        int dotSize = 20; // Diameter of each dot
-        int gap = 40;     // Gap between the dots
-        int lineLength = 200; // Length of the lines
+        g2d.setColor(Color.RED);
 
-        // Draw the dots and lines
-        for (int i = 0; i < vibgyorColors.length; i++) {
-            int x = startX + i * gap;
-            int y = startY + i * gap;
-            int centerX = x + dotSize / 2;
-            int centerY = y + dotSize / 2;
 
-            // Set the color for the current dot and line
-            g2d.setColor(vibgyorColors[i]);
+        // Root node
+        int rootX = 150, rootY = 50;
+        g2d.fillOval(rootX - 5, rootY - 5, 10, 10);
 
-            // Draw the dot
-            g2d.fillOval(x, y, dotSize, dotSize);
 
-            // Draw the vertical line
-            g2d.drawLine(centerX, centerY, centerX, centerY + lineLength);
+        // Level 1
+        int x1 = 120, y1 = 100;
+        int x2 = 180, y2 = 100;
+        g2d.fillOval(x1 - 5, y1 - 5, 10, 10);
+        g2d.fillOval(x2 - 5, y2 - 5, 10, 10);
+        g2d.drawLine(rootX, rootY, x1, y1);
+        g2d.drawLine(rootX, rootY, x2, y2);
 
-            // Draw the horizontal line
-            g2d.drawLine(centerX, centerY, centerX + lineLength, centerY);
-        }
+
+        // Level 2
+        int x3 = 100, y3 = 150;
+        int x4 = 140, y4 = 150;
+        int x5 = 160, y5 = 150;
+        int x6 = 200, y6 = 150;
+        g2d.fillOval(x3 - 5, y3 - 5, 10, 10);
+        g2d.fillOval(x4 - 5, y4 - 5, 10, 10);
+        g2d.fillOval(x5 - 5, y5 - 5, 10, 10);
+        g2d.fillOval(x6 - 5, y6 - 5, 10, 10);
+
+
+        g2d.drawLine(x1, y1, x3, y3);
+        g2d.drawLine(x1, y1, x4, y4);
+        g2d.drawLine(x2, y2, x5, y5);
+        g2d.drawLine(x2, y2, x6, y6);
     }
 
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("VIBGYOR Dots with Lines");
-        Draw_Dots panel = new Draw_Dots();
 
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Tree Clustering");
+        Draw_Dots panel = new Draw_Dots();
         frame.add(panel);
-        frame.setSize(500, 500);
+        frame.setSize(300, 400);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
 }
