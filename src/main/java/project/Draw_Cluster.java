@@ -2,23 +2,11 @@ package project;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Random;
 
-/**
- * This program draws a simple hierarchical clustering diagram.
- * It starts with K clusters entered by the user, then merges them
- * step by step into one final cluster.
- */
 public class Draw_Cluster extends JPanel {
 
-    // Number of starting clusters
     int totalClusters;
 
-    // Random generator for colors
-    Random random = new Random();
-
-    // Constructor to receive K clusters from user
     public Draw_Cluster(int k) {
         this.totalClusters = k;
     }
@@ -26,81 +14,80 @@ public class Draw_Cluster extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-
-        // Use Graphics2D for better drawing
         Graphics2D g2 = (Graphics2D) g;
-        g2.setStroke(new BasicStroke(2)); // set line thickness
 
-        // Settings for drawing
-        int initialX = 50;               // starting x position of first layer
-        int ySpacing = 60;               // vertical spacing between clusters
-        int clusterSize = 20;            // diameter of each cluster circle
+        int x = 50;
+        int ySpacing = 60;
+        int size = 20;
 
-        // This list stores all cluster points in the current layer
-        ArrayList<Point> currentClusters = new ArrayList<>();
+        // Store the center points of current clusters
+        int[] centerX = new int[totalClusters];
+        int[] centerY = new int[totalClusters];
 
-        // === Step 1: Draw initial K clusters ===
+        // Step 1: Draw initial clusters (colored red/green/blue repeating)
         for (int i = 0; i < totalClusters; i++) {
             int y = 50 + i * ySpacing;
 
-            // Random color for each initial cluster
-            Color clusterColor = new Color(random.nextInt(255), random.nextInt(255), random.nextInt(255));
-            g2.setColor(clusterColor);
+            // Set basic color pattern
+            if (i % 3 == 0) g2.setColor(Color.RED);
+            else if (i % 3 == 1) g2.setColor(Color.GREEN);
+            else g2.setColor(Color.BLUE);
 
-            // Draw circle
-            g2.fillOval(initialX, y, clusterSize, clusterSize);
+            g2.fillOval(x, y, size, size);
 
-            // Save center point of the circle
-            int centerX = initialX + clusterSize / 2;
-            int centerY = y + clusterSize / 2;
-            currentClusters.add(new Point(centerX, centerY));
+            // Save centers
+            centerX[i] = x + size / 2;
+            centerY[i] = y + size / 2;
         }
 
-        // === Step 2: Merge clusters until only one remains ===
-        int layerX = initialX;
+        // Step 2: Merge clusters step by step
+        int count = totalClusters;
+        int layer = 0;
 
-        while (currentClusters.size() > 1) {
-            ArrayList<Point> nextClusters = new ArrayList<>();
-            layerX += 100; // Move next layer to the right
+        while (count > 1) {
+            int[] nextX = new int[(count + 1) / 2];
+            int[] nextY = new int[(count + 1) / 2];
 
-            for (int i = 0; i < currentClusters.size(); i += 2) {
-                // If we have at least two clusters to merge
-                if (i + 1 < currentClusters.size()) {
-                    Point clusterA = currentClusters.get(i);
-                    Point clusterB = currentClusters.get(i + 1);
+            int newX = x + 100;
 
-                    // Midpoint Y for new parent cluster
-                    int mergedY = (clusterA.y + clusterB.y) / 2;
-                    int mergedX = layerX;
+            int index = 0;
+            for (int i = 0; i < count; i += 2) {
+                if (i + 1 < count) {
+                    int y1 = centerY[i];
+                    int y2 = centerY[i + 1];
+                    int midY = (y1 + y2) / 2;
 
-                    // Draw lines from children to parent
+                    // Draw merge lines
                     g2.setColor(Color.BLUE);
-                    g2.drawLine(clusterA.x, clusterA.y, mergedX, clusterA.y); // left child
-                    g2.drawLine(clusterB.x, clusterB.y, mergedX, clusterB.y); // right child
-                    g2.drawLine(mergedX, clusterA.y, mergedX, clusterB.y);    // vertical join
+                    g2.drawLine(centerX[i], y1, newX, y1);
+                    g2.drawLine(centerX[i + 1], y2, newX, y2);
+                    g2.drawLine(newX, y1, newX, y2);
 
-                    // Draw parent cluster as black circle
+                    // Draw new merged cluster
                     g2.setColor(Color.BLACK);
-                    g2.fillOval(mergedX - clusterSize / 2, mergedY - clusterSize / 2, clusterSize, clusterSize);
+                    g2.fillOval(newX - size / 2, midY - size / 2, size, size);
 
-                    // Save new cluster's center
-                    nextClusters.add(new Point(mergedX, mergedY));
+                    nextX[index] = newX;
+                    nextY[index] = midY;
                 } else {
-                    // If one cluster is left unpaired, carry it to next layer
-                    nextClusters.add(currentClusters.get(i));
+                    // Carry forward unpaired cluster
+                    nextX[index] = centerX[i];
+                    nextY[index] = centerY[i];
                 }
+                index++;
             }
 
-            // Update the layer for the next round of merges
-            currentClusters = nextClusters;
+            // Update current clusters
+            count = index;
+            centerX = nextX;
+            centerY = nextY;
+            x = newX;
+            layer++;
         }
     }
 
     public static void main(String[] args) {
-        // === Get number of clusters from user ===
         String input = JOptionPane.showInputDialog("Enter number of clusters (K):");
-
-        // Basic input validation
         int k;
         try {
             k = Integer.parseInt(input);
@@ -113,12 +100,10 @@ public class Draw_Cluster extends JPanel {
             return;
         }
 
-        // === Create window and draw the tree ===
-        JFrame frame = new JFrame("Hierarchical Clustering Diagram (K = " + k + ")");
-        Draw_Cluster panel = new Draw_Cluster(k);
-        frame.add(panel);
-        frame.setSize(800, 600); // set window size
+        JFrame frame = new JFrame("Simple Hierarchical Clustering (K = " + k + ")");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(800, 600);
+        frame.add(new Draw_Cluster(k));
         frame.setVisible(true);
     }
 }
