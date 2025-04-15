@@ -1,0 +1,2 @@
+public class Pr1 {
+}
