@@ -36,6 +36,66 @@ public class main_project extends JPanel {
             centroids.add(new Point(points.get(centroid_indices.get(i))));
         }
 
+        int[] assignments = new int[k]; //stores which cluster reach circle is in
+        int[] counts = new int[number_of_clusters]; //counts how many in each cluster
+        boolean changed;
+
+        for (int iter = 0; iter < 100; iter++) { //  100 times max
+            changed = false;
+
+            // assigning each circle to nearest center
+            for (int i = 0; i < k; i++) {
+                int closest = 0;
+                double min_dist = distance(points.get(i), centroids.get(0));
+                for (int j = 1; j < number_of_clusters; j++) {
+                    double dist = distance(points.get(i), centroids.get(j));
+                    if (dist < min_dist) {
+                        min_dist = dist;
+                        closest = j;
+                    }
+                }
+                // If changed cluster, mark as changed
+                if (assignments[i] != closest) {
+                    assignments[i] = closest;
+                    changed = true;
+                }
+            }
+
+            // moving each center to the average position of its group
+            Arrays.fill(counts, 0);
+            double[] sum_x = new double[number_of_clusters];
+            double[] sum_y = new double[number_of_clusters];
+
+            for (int i = 0; i < k; i++) {
+                int c = assignments[i];
+                sum_x[c] += points.get(i).x;
+                sum_y[c] += points.get(i).y;
+                counts[c]++;
+            }
+
+            for (int j = 0; j < number_of_clusters; j++) {
+                if (counts[j] > 0) {
+                    centroids.get(j).x = (int) (sum_x[j] / counts[j]);
+                    centroids.get(j).y = (int) (sum_y[j] / counts[j]);
+                }
+            }
+
+
+            if (!changed) break;
+        }
+
+        for (int j = 0; j < number_of_clusters; j++) clusters.add(new ArrayList<>());
+        for (int i = 0; i < k; i++) {
+            if (counts[assignments[i]] > 0) {
+                clusters.get(assignments[i]).add(i);
+            }
+        }
+
+        clusters.removeIf(ArrayList::isEmpty);
+    }
+    private double distance(Point p1, Point p2) {
+        return Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2));
+
 
     }
 
