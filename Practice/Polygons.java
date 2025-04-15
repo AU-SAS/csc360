@@ -1,9 +1,7 @@
-import practice.Step_5_Draw_Polygons;
-
 import javax.swing.*;
 import java.awt.*;
 
-class Polygons extends JPanel
+public class Polygons extends JPanel
 {
     @Override
     protected void paintComponent(Graphics g)

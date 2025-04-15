@@ -34,7 +34,7 @@ public class CarDrawing1 extends JPanel {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             JFrame frame = new JFrame("Simple Car Drawing");
-            CarDrawing1 car = new CarDrawing1();
+            CarDrawing car = new CarDrawing();
 
             frame.add(car);
             frame.setSize(400, 300);
