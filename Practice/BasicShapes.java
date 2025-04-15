@@ -1,6 +1,6 @@
         import javax.swing.*;
         import java.awt.*;
-public class shapes_colors extends JPanel {
+public  class shapes_colors extends JPanel {
     @Override
     public static void main(String[] args) {
         JFrame frame = new JFrame("VIBGYOR Star");
