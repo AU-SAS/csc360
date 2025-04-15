@@ -24,6 +24,20 @@ public class main_project extends JPanel {
             points.add(new Point(x, y)); //saves circle position
         }
     }
+    private void generateClusters() { //k means algorithm
+        int number_of_clusters = Math.max(1, (int) Math.sqrt(k)); //decides how many clusters we want
+        if (number_of_clusters > k) number_of_clusters = k;
+
+        ArrayList<Point> centroids = new ArrayList<>();
+        ArrayList<Integer> centroid_indices = new ArrayList<>();
+        for (int i = 0; i < k; i++) centroid_indices.add(i);
+        Collections.shuffle(centroid_indices, r_color); //shuffles randomly
+        for (int i = 0; i < number_of_clusters; i++) {
+            centroids.add(new Point(points.get(centroid_indices.get(i))));
+        }
+
+
+    }
 
 
     @Override
