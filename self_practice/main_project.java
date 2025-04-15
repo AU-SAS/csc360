@@ -16,6 +16,13 @@ public class main_project extends JPanel {
         this.r_color = new Random();
         this.points = new ArrayList<>();
         this.clusters = new ArrayList<>();
+
+        //left side k circles alignment
+        for (int i = 0; i < k; i++) { //i is the num of current circle
+            int x =40; //all would be vertically in same line
+            int y= 20 + (i*40)%400; // 400% added so it doesn't overflow from the screen (400 pixels)
+            points.add(new Point(x, y)); //saves circle position
+        }
     }
 
 
