@@ -53,11 +53,15 @@ public class Clustering_Old extends JPanel {
 
         // Draw lines from clusters to next layer
         g2.setColor(Color.BLUE);
-        g2.drawLine(startX + boxWidth, clusterCentersY[0], mergeX1, clusterCentersY[0]);
-        g2.drawLine(startX + boxWidth, clusterCentersY[1], mergeX1, clusterCentersY[1]);
-        g2.drawLine(mergeX1, clusterCentersY[0], mergeX1, clusterCentersY[1]);
+        g2.drawLine(startX + boxWidth,
+                clusterCentersY[0], mergeX1, clusterCentersY[0]);
+        g2.drawLine(startX + boxWidth,
+                clusterCentersY[1], mergeX1, clusterCentersY[1]);
+        g2.drawLine(mergeX1,
+                clusterCentersY[0], mergeX1, clusterCentersY[1]);
 
-        g2.drawLine(startX + boxWidth, clusterCentersY[2], mergeX1, clusterCentersY[2]);
+        g2.drawLine(startX + boxWidth,
+                clusterCentersY[2], mergeX1, clusterCentersY[2]);
 
         // Draw parent boxes
         g2.setColor(Color.BLACK);
