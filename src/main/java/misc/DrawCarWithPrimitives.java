@@ -1,7 +1,12 @@
+package misc;
+
 import javax.swing.*;
 import java.awt.*;
 
-public class CarDrawing1 extends JPanel {
+// Builds a car out of plain fillRect/fillOval primitives.
+// Contrast with atvt.Activity_4_Draw_a_car, which draws the same subject
+// as a single GeneralPath using quadratic and cubic segments.
+public class DrawCarWithPrimitives extends JPanel {
 
     @Override
     protected void paintComponent(Graphics g) {
@@ -34,11 +39,12 @@ public class CarDrawing1 extends JPanel {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             JFrame frame = new JFrame("Simple Car Drawing");
-            CarDrawing car = new CarDrawing();
+            DrawCarWithPrimitives car = new DrawCarWithPrimitives();
 
             frame.add(car);
             frame.setSize(400, 300);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setLocationRelativeTo(null); // Center the frame
             frame.setVisible(true);
         });
     }
