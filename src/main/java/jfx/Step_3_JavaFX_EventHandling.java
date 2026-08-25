@@ -6,6 +6,9 @@ import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+// Run this through jfx.Launcher, not directly: launching an Application subclass with the
+// JavaFX jars on the classpath fails with "JavaFX runtime components are missing".
+// jfx.Launcher explains why and works with no VM options.
 public class Step_3_JavaFX_EventHandling extends Application {
 
     @Override

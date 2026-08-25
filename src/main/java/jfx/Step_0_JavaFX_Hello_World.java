@@ -6,6 +6,9 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
+// Run this through jfx.Launcher, not directly: launching an Application subclass with the
+// JavaFX jars on the classpath fails with "JavaFX runtime components are missing".
+// jfx.Launcher explains why and works with no VM options.
 public class Step_0_JavaFX_Hello_World extends Application {
 
     @Override
