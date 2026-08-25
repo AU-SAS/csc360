@@ -10,6 +10,10 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- release, not source/target: source/target 11 still let the compiler link against
+             the installed JDK's newer APIs, so code that would not run on 11 compiled fine.
+             17 rather than the JDK 21 on the lab machines, so that it matches the JavaFX
+             version below and still builds for a student on a JDK 17 install. -->
         <maven.compiler.release>17</maven.compiler.release>
         <javafx.version>17.0.6</javafx.version>
         <junit.version>5.9.2</junit.version>
