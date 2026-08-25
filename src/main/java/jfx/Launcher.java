@@ -3,6 +3,8 @@ package jfx;
 import javafx.application.Application;
 
 import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Entry point for the JavaFX demos. Run this, not the demo classes directly.
@@ -35,6 +37,8 @@ public class Launcher {
     private static final String DEFAULT_DEMO = "Step_0_JavaFX_Hello_World";
 
     public static void main(String[] args) throws ClassNotFoundException {
+        silenceUnnamedModuleWarning();
+
         String demo = args.length > 0 ? args[0] : DEFAULT_DEMO;
         String[] rest = args.length > 0 ? Arrays.copyOfRange(args, 1, args.length) : args;
 
@@ -42,5 +46,23 @@ public class Launcher {
                 Class.forName(Launcher.class.getPackageName() + "." + demo).asSubclass(Application.class);
 
         Application.launch(app, rest);
+    }
+
+    /**
+     * Silences the warning JavaFX logs on startup when it was loaded from the classpath:
+     *
+     * <pre>WARNING: Unsupported JavaFX configuration: classes were loaded from 'unnamed module @...'</pre>
+     *
+     * <p>It is accurate rather than wrong -- running JavaFX off the classpath instead of the module path
+     * really is the unsupported configuration, and it is what this launcher deliberately does. For these
+     * demos nothing depends on the difference, so the warning is pure noise, and red text on every single
+     * run is how students learn to ignore warnings that do matter. The supported route, with no warning,
+     * is {@code mvn javafx:run}, which puts JavaFX on the module path.
+     *
+     * <p>The logger is named {@code javafx} ({@code com.sun.javafx.util.Logging.getJavaFXLogger}). This has
+     * to run before any JavaFX class initialises, hence the first line of {@code main}.
+     */
+    private static void silenceUnnamedModuleWarning() {
+        Logger.getLogger("javafx").setLevel(Level.SEVERE);
     }
 }
