@@ -1,3 +1,5 @@
+package misc;
+
 import javax.swing.*;
 import java.awt.*;
 
