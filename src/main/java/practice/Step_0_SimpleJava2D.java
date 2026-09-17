@@ -1,3 +1,5 @@
+package practice;
+
 import java.awt.*;
 public class Step_0_SimpleJava2D extends Frame
 {
