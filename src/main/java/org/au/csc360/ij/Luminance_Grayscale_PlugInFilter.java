@@ -36,7 +36,7 @@ import java.nio.file.Path;
  * brightness that an observer reports. The distinction is visible in the colour bands of the test
  * image this example loads.
  *
- * <p>One consequence of operating on a {@link ColorProcessor} deserves notice. Writing the computed
+ * <p>One consequence of operating on a {@link ColorProcessor} is worth recording. Writing the computed
  * luminance into all three channels produces an image that appears gray while remaining 24-bit RGB,
  * at three bytes per pixel for one byte of information. Converting the type, rather than equalising
  * the channels, is a separate operation and belongs to a different filter.

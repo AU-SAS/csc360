@@ -7,7 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Entry point for the JavaFX demos. Run this, not the demo classes directly.
+ * The entry point for the JavaFX demos, and the class to be launched in place of any demo class.
  *
  * <p>Running a demo class directly with the JavaFX jars on the classpath fails with:
  *
@@ -21,11 +21,13 @@ import java.util.logging.Logger;
  * line from the Maven dependencies, which is why "Run" on a demo class hits this and
  * {@code mvn javafx:run} does not -- the plugin passes {@code --module-path} and {@code --add-modules}.
  *
- * <p>The launcher sidesteps it: this class is not an {@code Application} subclass, so the check never
- * applies, and JavaFX then initialises perfectly well from the classpath. No VM options, no per-machine
- * run-configuration setup.
+ * <p>The launcher sidesteps the check rather than satisfying it. This class is not an
+ * {@code Application} subclass, so the condition never holds, and JavaFX then initialises perfectly
+ * well from the classpath. The arrangement requires no VM options and no per-machine run
+ * configuration, which is its advantage over supplying the module path by hand.
  *
- * <p>Pass a demo's simple class name to pick one; with no argument it runs the hello-world demo.
+ * <p>A demo is selected by its simple class name, given as the first argument; in the absence of an
+ * argument the hello-world demo runs.
  *
  * <pre>
  *   java -cp ... org.au.csc360.gfx.jfx.Launcher

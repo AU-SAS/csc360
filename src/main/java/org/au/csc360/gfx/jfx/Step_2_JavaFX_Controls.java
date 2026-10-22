@@ -7,9 +7,9 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
-// Run this through org.au.csc360.gfx.jfx.Launcher, not directly: launching an Application subclass with the
-// JavaFX jars on the classpath fails with "JavaFX runtime components are missing".
-// org.au.csc360.gfx.jfx.Launcher explains why and works with no VM options.
+// Launched through org.au.csc360.gfx.jfx.Launcher rather than directly: launching an Application
+// subclass with the JavaFX jars on the classpath fails with "JavaFX runtime components are
+// missing". Launcher documents the cause and requires no VM options.
 public class Step_2_JavaFX_Controls extends Application {
 
     @Override

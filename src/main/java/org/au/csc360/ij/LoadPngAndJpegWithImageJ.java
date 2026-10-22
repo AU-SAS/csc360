@@ -36,8 +36,9 @@ import java.nio.file.Path;
  * type names, which is why a <em>class</em> here called {@code IJ} would genuinely be a problem and
  * a package called {@code ij} is not.
  *
- * <p>With no arguments it opens the two files {@code SaveDrawingAsPngAndJpeg} writes, so run that
- * first. Pass paths as arguments to open other files.
+ * <p>In the absence of arguments the class opens the two files written by
+ * {@code org.au.csc360.gfx.SaveDrawingAsPngAndJpeg}, which must therefore have run beforehand. Paths
+ * supplied as arguments are opened instead.
  */
 public class LoadPngAndJpegWithImageJ {
 

@@ -27,17 +27,18 @@ import java.nio.file.Path;
  * transform encodes blocks of gradually varying color compactly, so a sharp boundary needs many
  * high-frequency coefficients and still comes back with ringing and blocking around the edge.
  *
- * <p><strong>On this picture the JPEG is the bigger file.</strong> Measured at 640x400: PNG 14,853
- * bytes, JPEG 20,301 bytes -- the lossy format losing on size to the lossless one, by a third. That
+ * <p><strong>On this picture the JPEG is the bigger file.</strong> Measured at 640x400: PNG 15,493
+ * bytes, JPEG 21,126 bytes -- the lossy format losing on size to the lossless one, by a third. That
  * is not a quirk of the example, it is what synthetic graphics do. PNG's filtering plus DEFLATE is
  * close to ideal for long runs of identical pixels and a small palette, which is what flat fills and
  * line art are, while JPEG pays its worst case for every hard edge and still throws information
  * away. Swap in a photograph and the ordering reverses, decisively.
  *
- * <p>The rule students should leave with is therefore not "JPEG is smaller". It is that JPEG is for
- * photographs and PNG is for anything drawn -- diagrams, screenshots, charts, text, line art -- where
- * it is both smaller and exact. Run the program, compare the printed sizes, then open the two files
- * side by side and zoom into the text to see what the extra bytes bought.
+ * <p>The rule the comparison establishes is therefore not that JPEG is smaller. It is that JPEG
+ * suits photographs and PNG suits anything drawn -- diagrams, screenshots, charts, text, line art --
+ * where it is at once smaller and exact. The program prints both sizes, and the cost of the lossy
+ * encoding is most apparent in the text when the two files are examined side by side at high
+ * magnification.
  *
  * <p><strong>The image is {@link BufferedImage#TYPE_INT_RGB}, deliberately.</strong> With
  * {@code TYPE_INT_ARGB} the PNG would still be written correctly, but the JPEG writer bundled with
@@ -46,7 +47,7 @@ import java.nio.file.Path;
  * channel, so an opaque image type is the honest choice. Needing transparency means needing PNG.
  *
  * <p>Both files go to {@code target/demo-output} by default, which Maven's clean removes and git
- * ignores. Pass a directory as the first argument to put them somewhere else.
+ * ignores. A directory supplied as the first argument overrides that location.
  */
 public class SaveDrawingAsPngAndJpeg {
 
@@ -115,7 +116,7 @@ public class SaveDrawingAsPngAndJpeg {
         g2d.drawString("CSC360 - PNG vs JPEG", 250, 250);
         g2d.setFont(new Font("SansSerif", Font.PLAIN, 15));
         g2d.drawString("Same pixels, two encodings.", 250, 285);
-        g2d.drawString("Zoom in on this text in both files.", 250, 310);
+        g2d.drawString("Thin strokes and flat fills: the lossy worst case.", 250, 310);
 
         g2d.dispose();
         return image;
