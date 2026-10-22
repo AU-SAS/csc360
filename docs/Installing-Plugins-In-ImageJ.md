@@ -37,7 +37,23 @@ Runtime only recognizes class file versions up to 52.0
 
 Two resolutions exist and only one of them holds. **Compiling the plugin sources for Java 8** produces class file version 52, which the bundled runtime loads: the two examples, compiled with `--release 8`, registered both menu entries and ran under Java 1.8.0_345 on the unmodified distribution. This is the approach the project takes, and it is why `Luminance_Grayscale_PlugInFilter` calls `Paths.get` where the rest of the project calls `Path.of`, the latter having arrived in Java 11. Plugin sources are therefore held to Java 8 even though the project as a whole is not.
 
-**Pointing ImageJ at a newer runtime does not work**, although it appears to. An `ImageJ.cfg` naming a Java 21 executable is honored by the launcher, and the launcher then adds its own options, among them `-Xincgc`, which was removed after Java 8. The result is `Unrecognized option: -Xincgc` followed by `Could not create the Java Virtual Machine`, and no window. ImageJ itself runs perfectly well on Java 21 when started directly as `java -cp ij.jar ij.ImageJ`, so the obstacle is the launcher rather than the application, but the bundled `ImageJ.exe` cannot be made to use a modern runtime by configuration alone.
+**Pointing `ImageJ.exe` at a newer runtime does not work**, although it appears to. An `ImageJ.cfg` naming a Java 21 executable is honored, and the launcher then adds its own options, among them `-Xincgc`, which was removed after Java 8. The result is `Unrecognized option: -Xincgc` followed by `Could not create the Java Virtual Machine`, and no window. The string `Xincgc` is present in the launcher binary itself, which is dated June 2015, so the option is compiled in rather than configured and no edit to `ImageJ.cfg` can remove it.
+
+The obstacle is therefore the launcher and not the application, and the application can be started without it. This is covered in *Running on a modern JDK* below, and it is the reason the Java 8 restriction on plugin sources is a deployment choice rather than an absolute: a plugin compiled for Java 8 loads on both runtimes, while one compiled for 17 loads only on the newer.
+
+## Running on a modern JDK
+
+ImageJ 1.x runs on current Java. Only the bundled launcher is restricted to Java 8, so invoking the application class directly bypasses the restriction:
+
+```
+javaw.exe -Xmx2048m -Dplugins.dir=C:in\ImageJ\. -cp C:in\ImageJ\ij.jar ij.ImageJ
+```
+
+The working directory is the installation directory, so that the macros and luts directories resolve. The `plugins.dir` property is passed explicitly because the launcher normally supplies it; without it the plugins directory is sought relative to the working directory, which is correct only when the command is issued from the installation.
+
+A script holding that command is installed beside the launcher as `ImageJ-jdk21.bat`, and starting it gives ImageJ 1.54g on Java 21.0.10, reported in the status bar, with the same 474 commands and 72 macros the Java 8 launcher produces. The plugin jar, compiled for Java 8, is read by the newer runtime without difficulty: both entries register under Java 21 exactly as they do under Java 8, since the Java platform reads class files older than itself.
+
+What is lost by this route is the launcher's own services, which are modest: the single-instance handoff, by which a second start passes its arguments to the instance already running, and the memory setting stored in `ImageJ.cfg`, which the script sets directly instead. What is gained is a current runtime, Java 8 having been out of public support for some years.
 
 ## Building and installing the jar
 
