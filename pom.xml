@@ -72,7 +72,7 @@
                         <configuration>
                             <!-- the jfx Launcher, not a demo class directly: see its javadoc. It is the one entry
                                  point that works both here (module path) and from an IDE Run button (classpath). -->
-                            <mainClass>org.au.csc360.graphics.jfx.Launcher</mainClass>
+                            <mainClass>org.au.csc360.gfx.jfx.Launcher</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>
