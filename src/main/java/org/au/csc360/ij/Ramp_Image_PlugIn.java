@@ -16,7 +16,7 @@ import ij.process.ImageProcessor;
  * linearly from 0 at the left edge to 255 at the right.
  *
  * <p>The ramp is the standard test pattern for the display end of the pipeline. Because its
- * intensity is known to be linear by construction, any banding, stepping or colour cast visible in
+ * intensity is known to be linear by construction, any banding, stepping or color cast visible in
  * it belongs to the display or to the lookup table rather than to the data, which makes it a
  * control against which other images can be judged.
  *

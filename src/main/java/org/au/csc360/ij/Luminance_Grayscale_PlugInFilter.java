@@ -7,7 +7,7 @@ import ij.process.ColorProcessor;
 import ij.process.ImageProcessor;
 
 import java.io.File;
-import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * An example of {@link PlugInFilter}, the interface for a plugin that transforms an image already
@@ -17,8 +17,8 @@ import java.nio.file.Path;
  * {@link PlugInFilter#setup(String, ImagePlus)} is a negotiation conducted before any pixel is
  * touched: the filter returns a set of capability flags, and ImageJ uses them to decide whether the
  * filter may run on the image at hand. This example returns {@code DOES_RGB}, declaring that it
- * accepts 24-bit colour and nothing else, whereupon ImageJ declines to apply it to an 8-bit or
- * 16-bit image instead of allowing it to misread the pixel layout. The flags also govern behaviour
+ * accepts 24-bit color and nothing else, whereupon ImageJ declines to apply it to an 8-bit or
+ * 16-bit image instead of allowing it to misread the pixel layout. The flags also govern behavior
  * the filter never implements itself -- {@code NO_CHANGES} suppresses the undo snapshot,
  * {@code SUPPORTS_MASKING} restricts the work to a selection, and returning {@code DONE} abandons
  * the operation -- so a great deal of what a filter does is declared rather than coded.
@@ -28,17 +28,25 @@ import java.nio.file.Path;
  * place, and the framework retains responsibility for the window, the undo buffer and, where the
  * image is a stack, for calling the filter once per slice.
  *
- * <p>The transformation itself is the conversion of colour to gray by luminance. The three channels
+ * <p>The transformation itself is the conversion of color to gray by luminance. The three channels
  * are weighted 0.2126, 0.7152 and 0.0722 for red, green and blue, the Rec. 709 coefficients, rather
  * than averaged in equal thirds. The weights approximate the sensitivity of human vision, which is
  * far greater to green than to blue; an unweighted mean renders a saturated blue and a saturated
  * green as a similar mid-gray, whereas the weighted sum preserves the difference in apparent
- * brightness that an observer reports. The distinction is visible in the colour bands of the test
+ * brightness that an observer reports. The distinction is visible in the color bands of the test
  * image this example loads.
+ *
+ * <p><strong>The source of this class is restricted to Java 8.</strong> ImageJ 1.x is distributed
+ * with a Java 8 runtime, and a class compiled for a later release is refused at load time with
+ * {@code UnsupportedClassVersionError} rather than with anything that names the plugin as the
+ * cause. The restriction is a deployment constraint and not a style preference, which is why
+ * {@code Paths.get} appears below in place of the {@code Path.of} used elsewhere in the project:
+ * the latter arrived in Java 11. The same applies to {@link Ramp_Image_PlugIn}, and to any class
+ * intended to be installed into an ImageJ distribution.
  *
  * <p>One consequence of operating on a {@link ColorProcessor} is worth recording. Writing the computed
  * luminance into all three channels produces an image that appears gray while remaining 24-bit RGB,
- * at three bytes per pixel for one byte of information. Converting the type, rather than equalising
+ * at three bytes per pixel for one byte of information. Converting the type, rather than equalizing
  * the channels, is a separate operation and belongs to a different filter.
  */
 public class Luminance_Grayscale_PlugInFilter implements PlugInFilter {
@@ -75,7 +83,7 @@ public class Luminance_Grayscale_PlugInFilter implements PlugInFilter {
 
     /**
      * Applies the filter to the image written by {@code org.au.csc360.gfx.SaveDrawingAsPngAndJpeg},
-     * falling back to a generated colour image where that file is absent, so that the example
+     * falling back to a generated color image where that file is absent, so that the example
      * remains runnable on its own.
      */
     public static void main(String[] args) {
@@ -94,18 +102,18 @@ public class Luminance_Grayscale_PlugInFilter implements PlugInFilter {
     }
 
     private static ImagePlus loadTestImage() {
-        File saved = Path.of("target", "demo-output", "drawing.png").toFile();
+        File saved = Paths.get("target", "demo-output", "drawing.png").toFile();
         if (saved.isFile()) {
             ImagePlus opened = IJ.openImage(saved.getAbsolutePath());
             if (opened != null && opened.getProcessor() instanceof ColorProcessor) {
                 return opened;
             }
         }
-        return syntheticColourBands();
+        return syntheticColorBands();
     }
 
     /** Six saturated bands, the case in which weighted and unweighted conversion differ most. */
-    private static ImagePlus syntheticColourBands() {
+    private static ImagePlus syntheticColorBands() {
         int width = 600;
         int height = 200;
         ColorProcessor ip = new ColorProcessor(width, height);
@@ -113,11 +121,11 @@ public class Luminance_Grayscale_PlugInFilter implements PlugInFilter {
         int bandWidth = width / bands.length;
 
         for (int x = 0; x < width; x++) {
-            int colour = bands[Math.min(x / bandWidth, bands.length - 1)];
+            int color = bands[Math.min(x / bandWidth, bands.length - 1)];
             for (int y = 0; y < height; y++) {
-                ip.set(x, y, colour);
+                ip.set(x, y, color);
             }
         }
-        return new ImagePlus("Colour bands", ip);
+        return new ImagePlus("Color bands", ip);
     }
 }

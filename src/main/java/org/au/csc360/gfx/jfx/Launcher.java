@@ -22,7 +22,7 @@ import java.util.logging.Logger;
  * {@code mvn javafx:run} does not -- the plugin passes {@code --module-path} and {@code --add-modules}.
  *
  * <p>The launcher sidesteps the check rather than satisfying it. This class is not an
- * {@code Application} subclass, so the condition never holds, and JavaFX then initialises perfectly
+ * {@code Application} subclass, so the condition never holds, and JavaFX then initializes perfectly
  * well from the classpath. The arrangement requires no VM options and no per-machine run
  * configuration, which is its advantage over supplying the module path by hand.
  *
@@ -62,7 +62,7 @@ public class Launcher {
      * is {@code mvn javafx:run}, which puts JavaFX on the module path.
      *
      * <p>The logger is named {@code javafx} ({@code com.sun.javafx.util.Logging.getJavaFXLogger}). This has
-     * to run before any JavaFX class initialises, hence the first line of {@code main}.
+     * to run before any JavaFX class initializes, hence the first line of {@code main}.
      */
     private static void silenceUnnamedModuleWarning() {
         Logger.getLogger("javafx").setLevel(Level.SEVERE);
