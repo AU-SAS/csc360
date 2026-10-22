@@ -16,6 +16,7 @@
              version below and still builds for a student on a JDK 17 install. -->
         <maven.compiler.release>17</maven.compiler.release>
         <javafx.version>17.0.6</javafx.version>
+        <imagej.version>1.54p</imagej.version>
         <junit.version>5.9.2</junit.version>
     </properties>
 
@@ -39,6 +40,12 @@
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-media</artifactId>
             <version>${javafx.version}</version>
+        </dependency>
+        <!-- ImageJ 1.x, the single-jar original. Used by org.au.csc360.ij. -->
+        <dependency>
+            <groupId>net.imagej</groupId>
+            <artifactId>ij</artifactId>
+            <version>${imagej.version}</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
