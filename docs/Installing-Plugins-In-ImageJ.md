@@ -46,7 +46,7 @@ The obstacle is therefore the launcher and not the application, and the applicat
 ImageJ 1.x runs on current Java. Only the bundled launcher is restricted to Java 8, so invoking the application class directly bypasses the restriction:
 
 ```
-javaw.exe -Xmx2048m -Dplugins.dir=C:in\ImageJ\. -cp C:in\ImageJ\ij.jar ij.ImageJ
+javaw.exe -Xmx2048m -Dplugins.dir=C:\bin\ImageJ\. -cp C:\bin\ImageJ\ij.jar ij.ImageJ
 ```
 
 The working directory is the installation directory, so that the macros and luts directories resolve. The `plugins.dir` property is passed explicitly because the launcher normally supplies it; without it the plugins directory is sought relative to the working directory, which is correct only when the command is issued from the installation.
