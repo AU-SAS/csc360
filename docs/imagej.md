@@ -1,6 +1,6 @@
 # ImageJ
 
-ImageJ is the image processing application this course uses alongside its own Java2D code, and this document records what has been established about a stock distribution: where it is obtained, which version it carries, how it is run on a current Java, and how it is extended with compiled plugins. The findings below were measured against ImageJ 1.54g installed at `C:\bin\ImageJ` from the official Windows bundle `ij154-win-java8.zip`, on 2026-10-22; the download and version details were checked on 2026-10-27.
+ImageJ is the image processing application this course uses alongside its own Java2D code, and this document records what has been established about a stock distribution: where it is obtained, which version it carries, how it is run on a current Java, how little of it the application actually needs, how it serves on other platforms, and how it is extended with compiled plugins. The findings below were measured against ImageJ 1.54g installed at `C:\bin\ImageJ` from the official Windows bundle `ij154-win-java8.zip`, on 2026-10-22; the download and version details were checked on 2026-10-27.
 
 ## Obtaining ImageJ
 
@@ -47,14 +47,38 @@ The project compiles against `net.imagej:ij` declared in `pom.xml`, and the arti
 The obstacle is therefore the launcher and not the application. ImageJ 1.x runs on current Java, and the application class can be started directly:
 
 ```
-javaw.exe -Xmx2048m -Dplugins.dir=C:\bin\ImageJ\. -cp C:\bin\ImageJ\ij.jar ij.ImageJ
+javaw.exe -Xmx2048m -Dplugins.dir=C:\bin\ImageJ -cp C:\bin\ImageJ\ij.jar ij.ImageJ
 ```
 
-The working directory is the installation directory, so that the macros and luts directories resolve. The `plugins.dir` property is passed explicitly because the launcher normally supplies it; without it the plugins directory is sought relative to the working directory, which is correct only when the command is issued from the installation.
+The working directory is the installation directory, so that the macros and luts directories resolve. The `plugins.dir` property is passed explicitly because the launcher normally supplies it; without it the plugins directory is sought relative to the working directory, which is correct only when the command is issued from the installation. The property names the directory holding `plugins`, and a trailing `\.` on it, which earlier versions of this note carried, makes no difference: both forms register the same 514 commands.
 
-A script holding that command is installed beside the launcher as `ImageJ-jdk21.bat`, and starting it gives ImageJ 1.54g on Java 21.0.10, reported in the status bar, with the same 474 commands and 72 macros the Java 8 launcher produces. A plugin jar compiled for Java 8, such as the one described below, is read by the newer runtime without difficulty: both course entries register under Java 21 exactly as they do under Java 8, since a Java runtime reads class files older than itself.
+Starting ImageJ this way gives 1.54g on Java 21.0.10, reported in the status bar, with the same 474 commands and 72 macros the Java 8 launcher produces. A plugin jar compiled for Java 8, such as the one described below, is read by the newer runtime without difficulty: both course entries register under Java 21 exactly as they do under Java 8, since a Java runtime reads class files older than itself.
 
-What is lost by this route is the launcher's own services, which are modest: the single-instance handoff, by which a second start passes its arguments to the instance already running, and the memory setting stored in `ImageJ.cfg`, which the script sets directly instead. What is gained is a current runtime, Java 8 having been out of public support for some years.
+What is lost by this route is the launcher's own services, which are modest: the single-instance handoff, by which a second start passes its arguments to the instance already running, and the memory setting stored in `ImageJ.cfg`, which a script sets directly instead. What is gained is a current runtime, Java 8 having been out of public support for some years.
+
+### The launch scripts
+
+Two scripts in this repository hold that command, `scripts/imagej.bat` for Windows and `scripts/imagej.sh` for Linux and macOS, and a copy of each is installed in `C:\bin\ImageJ` beside the launcher. Both take the same two environment variables: `IJ_HOME`, which names the installation and otherwise defaults to the directory the script itself sits in, and `IJ_MEMORY`, which sets the heap and defaults to `2048m`. Arguments are passed through to ImageJ, so `-batch macro.ijm` runs a macro.
+
+Neither script names a particular Java. Both prefer `$JAVA_HOME/bin/java` where `JAVA_HOME` is set and holds an executable, and otherwise take the first `java` on the `PATH`; on the machine used here both routes reach Temurin 21.0.10. Where no Java is found at all the script does not fail silently: it reports that none was found, states what `JAVA_HOME` held and what the `PATH` was, says that a JDK 8 or later is needed, and exits with status 1. A missing `ij.jar` is reported the same way, naming the directory that was searched. The Windows script holds its console open for that message only when it was started from Explorer, where the window would otherwise close with the script and take the message with it.
+
+The shell script also warns, on Linux and the BSDs alone, when neither `DISPLAY` nor `WAYLAND_DISPLAY` is set, for the reason given under *Other platforms* below. The warning does not stop the start, since the application may still be wanted under a virtual display.
+
+## What the installation actually needs
+
+Where the launcher is no longer used, the bundled runtime is no longer used either, and it is almost the whole download: the `jre` directory holds 107,626,569 bytes of a 112,610,566-byte installation, leaving under five megabytes for the application, its macros, its luts and its plugins. Removing it is safe and was measured: with `jre` moved aside, a start through the external Java reported ImageJ 1.54g on Java 21.0.10, with 514 commands and both CSC360 plugin classes registered, exactly as before.
+
+`ImageJ.exe` does not survive the removal, which is the point to be clear about. Its `ImageJ.cfg` names `jre\bin\javaw.exe`, so deleting the runtime leaves the launcher with no Java it can reach, and the compiled-in `-Xincgc` prevents it from being pointed at the installed JDK instead. Removing the runtime is therefore a decision to start ImageJ only through the scripts, and `ImageJ.exe` and `ImageJ.cfg` may as well go with it.
+
+One small thing is lost besides the launcher. The bundled macro `macros/Fonts.ijm` advises placing TrueType fonts in `ImageJ/jre/lib/font/`, which is that runtime's font directory; with an external Java the equivalent directory belongs to the JDK in use, and the advice in the macro no longer applies to this installation.
+
+## Other platforms
+
+Nothing in the installation is specific to Windows except `ImageJ.exe`, `ImageJ.cfg` and the bundled `jre`. The jar is compiled Java, and the `macros`, `luts` and `plugins` directories hold text and class files, so the same directory serves on Linux and macOS once a launch script for the platform is present; that is all the official Linux and macOS bundles are, the same application beside a runtime built for the platform.
+
+This was confirmed on an Ubuntu host: the installation was copied across without `jre`, `ImageJ.exe` or `ImageJ.cfg`, 3,968,647 bytes compressed, and `scripts/imagej.sh` started it on the host's own Java 21.0.12.1, where a macro reported ImageJ 1.54g with `os.name` of Linux and resolved the installation and luts directories correctly. The script was run both from inside the installation and by absolute path from another directory, since it locates the installation from its own path rather than from the working directory.
+
+**A display is required, and `-batch` does not avoid it.** The host used for that test is a headless server, and while reading the version and creating an image succeeded, the first command routed through `IJ.run` failed with `java.awt.HeadlessException`, raised in `ij.Menus.addMenuBar` where ImageJ builds its menu bar out of `java.awt.Menu` objects. ImageJ 1.x builds that menu bar whether or not a window is shown, so batch mode is not headless mode, and a server needs a virtual display: `xvfb-run sh imagej.sh -batch macro.ijm`. The host in question has no `Xvfb` installed, so the virtual-display route is reasoned rather than measured, and the graphical behavior of the course's plugins on Linux is untested; their class files are platform-neutral and nothing in them touches the platform.
 
 ## Installing compiled plugins
 
