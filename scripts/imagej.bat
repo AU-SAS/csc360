@@ -39,6 +39,8 @@ rem interactive session cmdcmdline is the shell's own command line, which does n
 rem name the script, so nothing waits. Invoking the script as "cmd /c path\imagej.bat"
 rem does match, and pauses; with no console to read from, the pause returns at once.
 :fail
-echo %cmdcmdline% | find /i "%~nx0" > nul && pause
+rem find is called by full path: an unrelated find earlier on the PATH, as a Unix
+rem toolchain installs, would otherwise be run instead and fail on the /i switch.
+echo %cmdcmdline% | "%SystemRoot%\System32\find.exe" /i "%~nx0" > nul && pause
 endlocal
 exit /b 1
