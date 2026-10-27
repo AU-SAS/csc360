@@ -1,0 +1,6 @@
+# Shell scripts must keep LF endings even in a Windows working tree: a copy taken
+# from Windows to a POSIX host otherwise carries a CR into the shebang line and the
+# shell reports a bad interpreter. Batch files take CRLF, which cmd relies on for
+# labels and goto.
+*.sh text eol=lf
+*.bat text eol=crlf
