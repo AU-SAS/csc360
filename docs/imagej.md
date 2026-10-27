@@ -1,12 +1,44 @@
 # ImageJ
 
-ImageJ is the image processing application this course uses alongside its own Java2D code, and this document records what has been established about a stock distribution: what the bundle contains, how it is run on a current Java, and how it is extended with compiled plugins. The findings below were measured against ImageJ 1.54g installed at `C:\bin\ImageJ` from the official Windows bundle `ij154-win-java8.zip`, on 2026-10-22.
+ImageJ is the image processing application this course uses alongside its own Java2D code, and this document records what has been established about a stock distribution: where it is obtained, which version it carries, how it is run on a current Java, and how it is extended with compiled plugins. The findings below were measured against ImageJ 1.54g installed at `C:\bin\ImageJ` from the official Windows bundle `ij154-win-java8.zip`, on 2026-10-22; the download and version details were checked on 2026-10-27.
+
+## Obtaining ImageJ
+
+ImageJ 1.x lives at **<https://imagej.net/ij/>**, and its downloads are listed at **<https://imagej.net/ij/download.html>**. The wider site at `imagej.net` also covers ImageJ2 and Fiji, which are separate programs built on ImageJ 1.x rather than newer releases of it, so a search for "ImageJ" readily leads to a Fiji download instead. The pages used by this course are the ones under `/ij/`, and the archives they offer are served from `wsr.imagej.net`.
+
+Each download is a zip archive, and installation consists of extracting it to a directory of choice; there is no installer. The archives with a bundled runtime carry their own private copy of Java, so no system Java is required and none is modified.
+
+| Platform | Archive | Bundled Java | Size |
+| --- | --- | --- | --- |
+| Windows 64-bit | [`ij154-win-java8.zip`](https://wsr.imagej.net/distros/win/ij154-win-java8.zip) | Java 8 | 50,035,350 bytes |
+| macOS Intel | [`ij154-osx-java8.zip`](https://wsr.imagej.net/distros/osx/ij154-osx-java8.zip) | Java 8 | 94,260,215 bytes |
+| macOS Apple silicon | [`ij154-osx-arm-java13.zip`](https://wsr.imagej.net/distros/osx/ij154-osx-arm-java13.zip) | Zulu OpenJDK 13.0.6 | 60,065,930 bytes |
+| Linux 64-bit | [`ij154-linux64-java8.zip`](https://wsr.imagej.net/distros/linux/ij154-linux64-java8.zip) | Java 8 | 52,605,577 bytes |
+| Any, no runtime | [`ij154.zip`](https://wsr.imagej.net/distros/cross-platform/ij154.zip) | none, an installed Java is used | 6,677,151 bytes |
+
+The sizes are the ones the server reports, and the difference between them is almost entirely the bundled runtime: the application itself, with its macros, plugins and luts, is under seven megabytes, while a bundle runs from fifty to ninety.
+
+The platform-independent archive is the more interesting of the two for a course that already has a JDK installed, since it carries no runtime to go stale and is started in the manner described under *Running on a modern JDK* below. The Windows bundle was used here because the question being investigated was how a stock installation behaves.
 
 ## The distribution
 
 The Windows bundle extracts to a single directory holding `ImageJ.exe`, `ij.jar`, a bundled `jre`, and the `plugins`, `macros` and `luts` directories. The bundled runtime is **Java 8** (Zulu 1.8.0_345), and `ImageJ.exe` is a launcher that starts that runtime with a fixed set of options.
 
-The jar shipped in the bundle is ImageJ **1.54g**, while the Maven dependency this project compiles against is `net.imagej:ij:1.54p`. The difference has not caused a problem for these examples, but the two are not the same build, and a plugin that relies on an API added between the two would compile and then fail at run time.
+## Versions and keeping current
+
+Three version numbers are in play at once, and they differ.
+
+| Where | Version |
+| --- | --- |
+| Current ImageJ 1.x release | **1.54t**, 16 May 2026 |
+| The jar inside the downloadable bundles | **1.54g** |
+| Latest `net.imagej:ij` on Maven Central | **1.54p**, published February 2025 |
+
+The downloadable archives are not rebuilt for every release: both files measured above were last modified on 8 November 2023, which is why a fresh download of `ij154-win-java8.zip` installs ImageJ 1.54g rather than the current version. The version actually running is reported in the main window's status bar and by `ij.IJ.getVersion()`.
+
+ImageJ updates itself rather than being reinstalled. **Help > Update ImageJ...** fetches the list of offered versions from `wsr.imagej.net/jars/list.txt`, downloads the chosen `ij.jar`, and replaces the installed one, the new version taking effect at the next start. The list is short and deliberately so, holding one entry per recent line: at the time of checking, v1.54t, v1.53v, v1.52v, v1.51w, v1.50i and v1.49v. The same command offers the daily build, and because it both upgrades and downgrades it is also the way back when a new release misbehaves.
+
+The project compiles against `net.imagej:ij` declared in `pom.xml`, and the artifact on Maven Central lags the release: 1.54p, published in February 2025, against 1.54t upstream. The gap has caused no difficulty for these examples, but code compiled against one version and run inside another is the ordinary situation here rather than an unusual one, and a plugin relying on an API added between the two would compile and then fail at run time.
 
 ## Running on a modern JDK
 
