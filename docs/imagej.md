@@ -62,6 +62,14 @@ Two scripts in this repository hold that command, `scripts/imagej.bat` for Windo
 
 Neither script names a particular Java. Both prefer `$JAVA_HOME/bin/java` where `JAVA_HOME` is set and holds an executable, and otherwise take the first `java` on the `PATH`; on the machine used here both routes reach Temurin 21.0.10. Where no Java is found at all the script does not fail silently: it reports that none was found, states what `JAVA_HOME` held and what the `PATH` was, says that a JDK 8 or later is needed, and exits with status 1. A missing `ij.jar` is reported the same way, naming the directory that was searched. The Windows script holds its console open for that message only when it was started from Explorer, where the window would otherwise close with the script and take the message with it.
 
+### The heap, and why ImageJ misreports it
+
+`IJ_MEMORY` is passed straight to the virtual machine as `-Xmx`, so it is the ceiling on the Java heap in which ImageJ holds its images, and `2048m` is the scripts' default where the variable is unset. The forms are the JVM's own: `512m`, `2048m`, `6g`. An image costs width by height by four bytes for 32-bit color, so the heap is what decides how large a stack can be opened, and ImageJ fails with an out-of-memory message rather than degrading when the ceiling is met.
+
+This replaces what `ImageJ.cfg` did for the bundled launcher, which read its `-Xmx` line from that file. The stock file in this installation asks for `-Xmx12052m`, three quarters of the machine's 16,069 MB, which is what the bundle's first start chose; the scripts ask for 2048m, so ImageJ has materially less memory under a script than under `ImageJ.exe` unless `IJ_MEMORY` says otherwise.
+
+**ImageJ's own memory display is then wrong, and that is worth knowing before it misleads.** `ij.IJ.maxMemory()` prefers the figure parsed out of `ImageJ.cfg` and falls back to the running JVM only when that file is absent, so with the stock file in place ImageJ reports 12052 MB whatever the script passed. Measured against a probe reading `Runtime.maxMemory()` directly: `-Xmx512m` gives a real heap of 512 MB and a reported 12052 MB, `-Xmx2048m` gives 2048 and 12052, `-Xmx6g` gives 6144 and 12052. With `ImageJ.cfg` moved aside, the two agree exactly. The same misreading affects **Edit > Options > Memory & Threads**, which writes a new `-Xmx` line into `ImageJ.cfg`: under a script that file is read by nothing, so the dialog appears to work and changes nothing, and where the file has been removed it reports that `ImageJ.cfg` was not found. Removing `ImageJ.cfg` along with the launcher therefore costs nothing and makes the display honest.
+
 The shell script also warns, on Linux and the BSDs alone, when neither `DISPLAY` nor `WAYLAND_DISPLAY` is set, for the reason given under *Other platforms* below. The warning does not stop the start, since the application may still be wanted under a virtual display.
 
 ## What the installation actually needs
@@ -70,7 +78,9 @@ Where the launcher is no longer used, the bundled runtime is no longer used eith
 
 `ImageJ.exe` does not survive the removal, which is the point to be clear about. Its `ImageJ.cfg` names `jre\bin\javaw.exe`, so deleting the runtime leaves the launcher with no Java it can reach, and the compiled-in `-Xincgc` prevents it from being pointed at the installed JDK instead. Removing the runtime is therefore a decision to start ImageJ only through the scripts, and `ImageJ.exe` and `ImageJ.cfg` may as well go with it.
 
-One small thing is lost besides the launcher. The bundled macro `macros/Fonts.ijm` advises placing TrueType fonts in `ImageJ/jre/lib/font/`, which is that runtime's font directory; with an external Java the equivalent directory belongs to the JDK in use, and the advice in the macro no longer applies to this installation.
+**Text rendering is not affected, which is the natural worry, since the bundled macro `macros/Fonts.ijm` advises placing TrueType fonts in `ImageJ/jre/lib/font/`.** That directory does not exist in this bundle, and neither runtime ships a font: a search for `.ttf`, `.ttc` and `.otf` files finds none anywhere inside either the bundled Zulu 8 or Temurin 21, and both carry only the same two `fontconfig` files that map the logical families — Dialog, SansSerif, Serif, Monospaced — onto fonts of the platform. Java on Windows draws with the fonts Windows has installed, of which there are 153 files in `C:\Windows\Fonts` on this machine, and a probe calling `GraphicsEnvironment.getAvailableFontFamilyNames()` under each runtime from the same installation found 226 families under Java 8 and 228 under Java 21, Arial, Times New Roman, Segoe UI, Consolas and Calibri among them in both cases. The advice in `Fonts.ijm` is a survival from the era when a runtime shipped the Lucida family in `jre/lib/fonts`, and a font wanted by ImageJ today is installed in Windows, where every application sees it.
+
+If anything the newer runtime renders text better, since Java 8 predates the automatic high-DPI scaling that arrived in Java 9 and shows its age on a scaled display.
 
 ## Other platforms
 
