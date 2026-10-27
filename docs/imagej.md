@@ -1,6 +1,6 @@
 # ImageJ
 
-ImageJ is the image processing application this course uses alongside its own Java2D code, and this document records what has been established about a stock distribution: where it is obtained, which version it carries, how it is run on a current Java, how little of it the application actually needs, how it serves on other platforms, and how it is extended with compiled plugins. The findings below were measured against ImageJ 1.54g installed at `C:\bin\ImageJ` from the official Windows bundle `ij154-win-java8.zip`, on 2026-10-22; the download and version details were checked on 2026-10-27, and that installation has since been trimmed to its platform-neutral parts, as *What the installation actually needs* records.
+ImageJ is the image processing application this course uses alongside its own Java2D code, and this document records what has been established about a stock distribution: where it is obtained, which version it carries, how it is run on a current Java, how little of it the application actually needs, how it serves on other platforms, and how it is extended with compiled plugins. The findings below were measured against ImageJ 1.54g installed from the official Windows bundle `ij154-win-java8.zip` on 2026-10-22. The installation directory is written throughout as `<IJ_HOME>`, which is also the name the launch scripts give it, since where it sits differs from one machine to the next; the download and version details were checked on 2026-10-27, and that installation has since been trimmed to its platform-neutral parts, as *What the installation actually needs* records.
 
 ## Obtaining ImageJ
 
@@ -47,7 +47,7 @@ The project compiles against `net.imagej:ij` declared in `pom.xml`, and the arti
 The obstacle is therefore the launcher and not the application. ImageJ 1.x runs on current Java, and the application class can be started directly:
 
 ```
-javaw.exe -Xmx2048m -Dplugins.dir=C:\bin\ImageJ -cp C:\bin\ImageJ\ij.jar ij.ImageJ
+javaw.exe -Xmx2048m -Dplugins.dir=<IJ_HOME> -cp <IJ_HOME>\ij.jar ij.ImageJ
 ```
 
 The working directory is the installation directory, so that the macros and luts directories resolve. The `plugins.dir` property is passed explicitly because the launcher normally supplies it; without it the plugins directory is sought relative to the working directory, which is correct only when the command is issued from the installation. The property names the directory holding `plugins`, and a trailing `\.` on it, which earlier versions of this note carried, makes no difference: both forms register the same 514 commands.
@@ -58,7 +58,7 @@ What is lost by this route is the launcher's own services, which are modest: the
 
 ### The launch scripts
 
-Two scripts in this repository hold that command, `scripts/imagej.bat` for Windows and `scripts/imagej.sh` for Linux and macOS, and a copy of each is installed in `C:\bin\ImageJ` beside the launcher. Both take the same two environment variables: `IJ_HOME`, which names the installation and otherwise defaults to the directory the script itself sits in, and `IJ_MEMORY`, which sets the heap and defaults to `2048m`. Arguments are passed through to ImageJ, so `-batch macro.ijm` runs a macro.
+Two scripts in this repository hold that command, `scripts/imagej.bat` for Windows and `scripts/imagej.sh` for Linux and macOS, and a copy of each is installed in `<IJ_HOME>` beside the launcher. Both take the same two environment variables: `IJ_HOME`, which names the installation and otherwise defaults to the directory the script itself sits in, and `IJ_MEMORY`, which sets the heap and defaults to `2048m`. Arguments are passed through to ImageJ, so `-batch macro.ijm` runs a macro.
 
 Neither script names a particular Java. Both prefer `$JAVA_HOME/bin/java` where `JAVA_HOME` is set and holds an executable, and otherwise take the first `java` on the `PATH`; on the machine used here both routes reach Temurin 21.0.10. Where no Java is found at all the script does not fail silently: it reports that none was found, states what `JAVA_HOME` held and what the `PATH` was, says that a JDK 8 or later is needed, and exits with status 1. A missing `ij.jar` is reported the same way, naming the directory that was searched. The Windows script holds its console open for that message only when it was started from Explorer, where the window would otherwise close with the script and take the message with it.
 
@@ -78,9 +78,9 @@ Where the launcher is no longer used, the bundled runtime is no longer used eith
 
 `ImageJ.exe` does not survive the removal, which is the point to be clear about. Its `ImageJ.cfg` names `jre\bin\javaw.exe`, so deleting the runtime leaves the launcher with no Java it can reach, and the compiled-in `-Xincgc` prevents it from being pointed at the installed JDK instead. Removing the runtime is therefore a decision to start ImageJ only through the scripts, and `ImageJ.exe` and `ImageJ.cfg` go with it: the one cannot run and the other is read by nothing, while its stale memory figure would go on being reported in place of the real heap.
 
-**The installation at `C:\bin\ImageJ` was trimmed this way on 2026-10-27**, and is the state the rest of this document describes. It went from 434 files and 112,613,968 bytes to 253 files and 4,592,592 bytes, a reduction of 108,021,376 bytes, and what remains is `ij.jar`, the `macros`, `luts` and `plugins` directories, and the two launch scripts. Both starts were exercised afterwards: the batch script brought up the main window under Temurin 21.0.10, and a macro run through the shell script reported ImageJ 1.54g on Java 21.0.10 and ran the CSC360 ramp plugin. The memory figure now reads 2048 MB, the heap the script actually asks for, because the file that used to override it is gone.
+**The installation used here was trimmed this way on 2026-10-27**, and is the state the rest of this document describes. It went from 434 files and 112,613,968 bytes to 253 files and 4,592,592 bytes, a reduction of 108,021,376 bytes, and what remains is `ij.jar`, the `macros`, `luts` and `plugins` directories, and the two launch scripts. Both starts were exercised afterwards: the batch script brought up the main window under Temurin 21.0.10, and a macro run through the shell script reported ImageJ 1.54g on Java 21.0.10 and ran the CSC360 ramp plugin. The memory figure now reads 2048 MB, the heap the script actually asks for, because the file that used to override it is gone.
 
-**Text rendering is not affected, which is the natural worry, since the bundled macro `macros/Fonts.ijm` advises placing TrueType fonts in `ImageJ/jre/lib/font/`.** That directory does not exist in this bundle, and neither runtime ships a font: a search for `.ttf`, `.ttc` and `.otf` files finds none anywhere inside either the bundled Zulu 8 or Temurin 21, and both carry only the same two `fontconfig` files that map the logical families — Dialog, SansSerif, Serif, Monospaced — onto fonts of the platform. Java on Windows draws with the fonts Windows has installed, of which there are 153 files in `C:\Windows\Fonts` on this machine, and a probe calling `GraphicsEnvironment.getAvailableFontFamilyNames()` under each runtime from the same installation found 226 families under Java 8 and 228 under Java 21, Arial, Times New Roman, Segoe UI, Consolas and Calibri among them in both cases. The advice in `Fonts.ijm` is a survival from the era when a runtime shipped the Lucida family in `jre/lib/fonts`, and a font wanted by ImageJ today is installed in Windows, where every application sees it.
+**Text rendering is not affected, which is the natural worry, since the bundled macro `macros/Fonts.ijm` advises placing TrueType fonts in `ImageJ/jre/lib/font/`.** That directory does not exist in this bundle, and neither runtime ships a font: a search for `.ttf`, `.ttc` and `.otf` files finds none anywhere inside either the bundled Zulu 8 or Temurin 21, and both carry only the same two `fontconfig` files that map the logical families — Dialog, SansSerif, Serif, Monospaced — onto fonts of the platform. Java on Windows draws with the fonts Windows has installed, of which the Windows font directory held 153 files on the machine used here, and a probe calling `GraphicsEnvironment.getAvailableFontFamilyNames()` under each runtime from the same installation found 226 families under Java 8 and 228 under Java 21, Arial, Times New Roman, Segoe UI, Consolas and Calibri among them in both cases. The advice in `Fonts.ijm` is a survival from the era when a runtime shipped the Lucida family in `jre/lib/fonts`, and a font wanted by ImageJ today is installed in Windows, where every application sees it.
 
 If anything the newer runtime renders text better, since Java 8 predates the automatic high-DPI scaling that arrived in Java 9 and shows its age on a scaled display.
 
@@ -125,20 +125,20 @@ Runtime only recognizes class file versions up to 52.0
 
 **Compiling the plugin sources for Java 8** produces class file version 52, which the bundled runtime loads: the two examples, compiled with `--release 8`, registered both menu entries and ran under Java 1.8.0_345 on the unmodified distribution. This is the approach the project takes, and it is why `Luminance_Grayscale_PlugInFilter` calls `Paths.get` where the rest of the project calls `Path.of`, the latter having arrived in Java 11. Plugin sources are therefore held to Java 8 even though the project as a whole is not.
 
-That restriction is a deployment choice rather than an absolute. A plugin compiled for Java 8 loads on both runtimes, while one compiled for 17 loads only on the newer, so the lower target buys compatibility with the stock launcher and nothing else. Where the application is always started as *Running on a modern JDK* above describes, plugin sources may use the same language level as the rest of the project — which is now the case for the installation at `C:\bin\ImageJ`, the Java 8 runtime having been removed from it. The sources and the build below are still held to Java 8 so that the jar remains usable on an untouched distribution, which is what a student would download; dropping that is a decision for the course, not a consequence of the trim.
+That restriction is a deployment choice rather than an absolute. A plugin compiled for Java 8 loads on both runtimes, while one compiled for 17 loads only on the newer, so the lower target buys compatibility with the stock launcher and nothing else. Where the application is always started as *Running on a modern JDK* above describes, plugin sources may use the same language level as the rest of the project — which is now the case for the installation used here, the Java 8 runtime having been removed from it. The sources and the build below are still held to Java 8 so that the jar remains usable on an untouched distribution, which is what a student would download; dropping that is a decision for the course, not a consequence of the trim.
 
 ### Building and installing the jar
 
 The two plugin classes are compiled for Java 8 against the installed `ij.jar`, and packaged with the configuration file at the root of the archive:
 
 ```
-javac --release 8 -d classes -cp C:\bin\ImageJ\ij.jar \
+javac --release 8 -d classes -cp <IJ_HOME>\ij.jar \
     src/main/java/org/au/csc360/ij/Ramp_Image_PlugIn.java \
     src/main/java/org/au/csc360/ij/Luminance_Grayscale_PlugInFilter.java
 jar cf csc360_plugins.jar plugins.config -C classes org
 ```
 
-The resulting `csc360_plugins.jar` is copied into `C:\bin\ImageJ\plugins\`, and the entries appear under Plugins > CSC360 when ImageJ next starts. The project's own `mvn package` does not currently produce this jar; it is built separately, because the release level and the file name both differ from the project's main artifact.
+The resulting `csc360_plugins.jar` is copied into `<IJ_HOME>\plugins\`, and the entries appear under Plugins > CSC360 when ImageJ next starts. The project's own `mvn package` does not currently produce this jar; it is built separately, because the release level and the file name both differ from the project's main artifact.
 
 ## A note on the firewall prompt
 
